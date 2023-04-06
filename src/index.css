@@ -1,13 +1,74 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* ----- RESET ------- */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body, section, article, h1, h2, p, a, button, ul {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    font: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    color: inherit;
+    background: transparent;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  /* ----- DEFAULTS ------ */
+
+  :root {
+    --main-font-family: 'Nunito', sans-serif;
+    --primary-color: #0e2b5e;
+    --primary-color-hover: rgb(26, 70, 132);
+    --transparent-bg-color: rgba(14, 43, 94, 0.9);
+    --main-font-color: white;
+    --secondary-bg-color: white;
+    --secondary-font-color: rgb(14, 60, 94);
+    --alternative-bg-color: rgba(255, 255, 255, 0.6);
+    --button-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    --title-font-size: clamp(3rem, 2.8519rem + 0.7407vw, 3.5rem);
+    --choose-font-size: clamp(1.8rem, 1.6519rem + 0.7407vw, 2.3rem);
+    --question-font-size: clamp(1.49rem, 1.3685rem + 0.6074vw, 1.9rem);
+    --country-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    --high-score-btn-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
+    --marker-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
+    --high-score-title-font-size: clamp(1.5rem, 1.4429rem + 0.2857vw, 1.7rem);
+    --high-score-font-size: clamp(1.4rem, 1.3429rem + 0.2857vw, 1.6rem);
+    --utilities-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    --orange: #FF9671;
+    --violet: #845EC2;
+    --peach: #F7C8A8;
+    --fuchsia: #FF6F91;
+    --pink: #f475b4;
+    --magenta: #D65DB1;
+    --yellow: #FFC75F;
+    --correct: #4EFE4E;
+    --incorrect: #FB3535;
+    --ocean: #60bef2;
+  }
+  
+  html {
+    font-family: var(--main-font-family);
+    box-sizing: border-box;
+  }
+  
+  .root {
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary-color);
+    height: 100vh;
+    margin: 0;
+  }
+
+
+  
+
+.developer {
+  color: rgba(0,0,0,.75)
 }

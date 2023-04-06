@@ -1,0 +1,99 @@
+.howToPlayBackground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: var(--alternative-bg-color);
+}
+
+.howToPlayCanvas {
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  background-color: var(--transparent-bg-color);
+  border: 1px solid var(--main-font-color);
+  border-radius: 50%;
+  box-shadow: 10px 10px 30px var(--main-font-color) inset;
+  padding: 2rem;
+  font-size: var(--utilities-font-size);
+  color: var(--main-font-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+@media screen and (min-width: 414px) {
+  .howToPlayCanvas {
+    width: 20.5rem;
+    height: 20.5rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .howToPlayCanvas {
+    width: 29.2rem;
+    height: 29.2rem;
+  }
+}
+
+.firstRule {
+  margin: 3rem 0 .5rem;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+.secondRule {
+  margin: .5rem 0;
+  opacity: 0;
+  animation: appear 1s 1s forwards;
+}
+
+.thirdRule {
+  margin: .5rem 0;
+  opacity: 0;
+  animation: appear 1s 2s forwards;
+}
+
+.fourthRule {
+  margin: .5rem 0;
+  opacity: 0;
+  animation: appear 1s 3s forwards;
+}
+
+.okay {
+  margin: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid var(--main-font-color);
+  border-radius: 2rem;
+  box-shadow: 2px 2px 7px var(--main-font-color) inset,
+    4px 4px 15px var(--primary-color);
+  opacity: 0;
+  animation: appear 1s 4s forwards;
+}
+
+.fast {
+  opacity: 1;
+  animation: none;
+}
+
+.okay:hover {
+  background-color: var(--primary-color-hover);
+}
+
+@keyframes appear {
+    from {
+      opacity: 0;   
+    }
+    to {
+      opacity: 1;   
+    }
+  }

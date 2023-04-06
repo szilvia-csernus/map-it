@@ -1,0 +1,31 @@
+  .playBtn {
+    position: absolute;
+    bottom: 4rem;
+    background-color: var(--transparent-bg-color);
+    font-size: var(--button-font-size);
+    font-weight: 700;
+    letter-spacing: .2rem;
+    color: var(--main-font-color);
+    border: 1px solid var(--main-font-color);
+    cursor: pointer;
+    padding: .7rem 3rem;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 10px var(--main-font-color) inset, 
+                4px 4px 15px var(--primary-color);
+    opacity: 0;
+    animation: appear .2s ease-in forwards;
+  }
+  
+  .playBtn:hover {
+    background-color: var(--primary-color-hover);
+  }
+
+
+@keyframes appear {
+    from {
+      opacity: 0;   
+    }
+    to {
+      opacity: 1;   
+    }
+  }
