@@ -1,0 +1,22 @@
+  .title {
+  position: absolute;
+  top: 4vh;
+  z-index: 1;
+  font-weight: bold;
+  color: var(--main-font-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--main-font-family);
+  font-size: var(--title-font-size);
+}
+
+.choose {
+  position: absolute;
+  top: 4rem;
+  z-index: 1;
+  font-weight: bold;
+  color: var(--main-font-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--main-font-family);
+  font-size: var(--choose-font-size);
+  animation: bump 1s ease-in-out;
+}

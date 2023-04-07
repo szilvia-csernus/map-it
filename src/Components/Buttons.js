@@ -1,4 +1,3 @@
-// export let isMobile = false;
 import classes from './Buttons.module.css';
 import { gameActions } from '../store/game-slice';
 import { playBtnActions } from '../store/play-btn-slice';
@@ -7,6 +6,7 @@ import {
     localStorageActions
 } from '../store/local-storage-slice';
 import { howToPlayActions } from '../store/how-to-play-slice';
+import { game } from '../js/game';
 
 
 export const PlayBtn = (map) => {
@@ -15,40 +15,23 @@ export const PlayBtn = (map) => {
     const mobile = useSelector(state => state.playBtnSlice.mobile);
     const gameState = useSelector(state => state.gameSlice);
     const howToPlayState = useSelector(state => state.howToPlaySlice);
-    const localStorageState = useSelector(state => state.localStorageSlice)
+    const localStorageState = useSelector(state => state.localStorageSlice);
+    const playBtnState = useSelector(state => state.playBtnSlice);
 	
-    const game = (map, mobile) => {
-			console.log(map, mobile);
-
-			const continueFunction = () => {
-				if (localStorageState.playedBefore) {
-					console.log('continue');
-					// addStarIcon(map);
-				}
-				console.log('continue, not played before, add exit icon');
-                 dispatch(localStorageActions.setVisitedBefore(localStorageState));
-                 dispatch(gameActions.addExitIcon(gameState))
-				// addExit(map);
-				// showChooseRegionTitle();
-				// addRegionBtns();
-				// addClickListenersToRegionBtns(map);
-			};
-
-			if (!localStorageState.visitedBefore && gameState.firstTime) {
-				dispatch(gameActions.setFirstTime(gameState));
-				dispatch(howToPlayActions.add(howToPlayState));
-	
-			} else {
-                console.log('add info icon')
-                dispatch(gameActions.addQuestionMarkIcon(gameState))
-				// addHowToPlayIcon(mobile);
-				continueFunction();
-			}
-		};
-
     const clickEventHandler = () => {
-        console.log('game!')
-        game(map, mobile, gameState.firstTime);
+        game(
+					map,
+					mobile,
+					localStorageState,
+					localStorageActions,
+					gameActions,
+					gameState,
+					playBtnActions,
+					playBtnState,
+					howToPlayActions,
+					howToPlayState,
+					dispatch
+				);
        
 	};
     const touchStartEventHandler = () => {
@@ -68,6 +51,47 @@ export const PlayBtn = (map) => {
 		</>
 	);
 };
+
+// used to center the flying animation the middle of the regions.
+const centerCoordinates = {
+	europe: [14.213562, 53.541532],
+	asia: [77.367783, 32.17445],
+	africa: [17.015762, 8.895926],
+	americas: [-84.81102, 11.632733],
+};
+
+function OneRegionBtn (props) {
+    const classNames = `${classes.regionBtn} ${props.className}`;
+
+    function clickHandler () {
+
+    }
+    return (
+        <button className={classNames} onClick={clickHandler}>{props.children}</button>
+    )
+}
+
+/** creates all 4 region buttons */
+export function RegionBtns () {
+    const regions = [
+        {name: 'Europe', className: classes.europe},
+        {name: 'Asia', className: classes.asia},
+        {name: 'Americas', className: classes.americas},
+        {name: 'Africa', className: classes.africa},
+    ];
+    const buttons = [];
+
+    for (const region of regions) {
+        buttons.push(<OneRegionBtn key={region.name} className={region.className}>{region.name}</OneRegionBtn>)
+    }
+   
+    return (
+        <div className={classes.regionCanvas}>
+            {buttons }
+        </div>
+    )
+}
+
 
 // // region button click listeners.
 // const addClickListenersToRegionBtns = (map) => {

@@ -4,13 +4,22 @@ const gameSlice = createSlice({
 	name: 'gameSlice',
 	initialState: {
 		firstTime: true,
+        mapItTitle: true,
         exitIcon: false,
         starIcon: false,
         questionMarkIcon: false,
+        chooseRegionTitle: false,
+        regionBtns: false,
 	},
 	reducers: {
 		setFirstTime(state) {
 			state.firstTime = false;
+		},
+		addMapItTitle(state) {
+			state.mapItTitle = true;
+		},
+		removeMapItTitle(state) {
+			state.mapItTitle = false;
 		},
 		addExitIcon(state) {
 			state.exitIcon = true;
@@ -30,7 +39,18 @@ const gameSlice = createSlice({
 		removeQuestionMarkIcon(state) {
 			state.questionMarkIcon = false;
 		},
-
+        addChooseRegionTitle(state) {
+            state.chooseRegionTitle = true
+        },
+        removeChooseRegionTitle(state) {
+            state.chooseRegionTitle = false
+        },
+        addRegionBtns(state) {
+            state.regionBtns = true
+        },
+        removeRegionBtns(state) {
+            state.regionBtns = false
+        }
         
 	},
 });

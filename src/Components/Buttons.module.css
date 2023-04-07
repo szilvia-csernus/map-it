@@ -29,3 +29,65 @@
       opacity: 1;   
     }
   }
+
+
+/* ---- Region buttons ----  */
+
+.regionCanvas {
+  position: absolute;
+  bottom: 5vh;
+  width: 100vw;
+  max-width: 900px;
+  margin: auto;
+  z-index: 2;
+  opacity: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem 0;
+  animation: appear .5s ease-in forwards
+}
+
+.regionBtn {
+  text-align: center;
+  width: clamp(8rem, 6.8148rem + 5.9259vw, 12rem);
+  padding: 0.7rem 0;
+  margin: auto;
+  letter-spacing: 0;
+  position: relative;
+  background-color: var(--transparent-bg-color);
+  border: 2px solid var(--orange);
+  font-size: var(--button-font-size);
+  font-weight: 700;
+  letter-spacing: .1rem;
+  color: var(--main-font-color);
+  cursor: pointer;
+  border-radius: 2rem;
+}
+
+.regionBtn:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.europe {
+  order: 1;
+  border-color: var(--violet);
+  box-shadow: 2px 2px 10px var(--violet) inset, 4px 4px 15px var(--primary-color);
+}
+
+.asia {
+  order: 2;
+  border-color: var(--fuchsia);
+  box-shadow: 2px 2px 10px var(--fuchsia) inset, 4px 4px 15px var(--primary-color);
+}
+
+.americas {
+  order: 3;
+  box-shadow: 2px 2px 10px var(--orange) inset, 4px 4px 15px var(--primary-color);
+}
+
+.africa {
+  order: 4;
+  border-color: var(--yellow);
+  box-shadow: 2px 2px 10px var(--yellow) inset, 4px 4px 15px var(--primary-color);
+}
