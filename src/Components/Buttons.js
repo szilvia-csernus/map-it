@@ -24,19 +24,18 @@ export const PlayBtn = forwardRef((props, ref) => {
     const clickEventHandler = () => {
         rotateGlobe(map);
         game(
-					map,
-					mobile,
-					localStorageState,
-					localStorageActions,
-					gameActions,
-					gameState,
-					playBtnActions,
-					playBtnState,
-					howToPlayActions,
-					howToPlayState,
-					dispatch
-				);
-       
+                map,
+                mobile,
+                localStorageState,
+                localStorageActions,
+                gameActions,
+                gameState,
+                playBtnActions,
+                playBtnState,
+                howToPlayActions,
+                howToPlayState,
+                dispatch
+			);
 	};
     const touchStartEventHandler = () => {
         dispatch(playBtnActions.setMobile(true))
@@ -56,77 +55,71 @@ export const PlayBtn = forwardRef((props, ref) => {
 	);
 });
 
-// used to center the flying animation the middle of the regions.
-const centerCoordinates = {
-	europe: [14.213562, 53.541532],
-	asia: [77.367783, 32.17445],
-	africa: [17.015762, 8.895926],
-	americas: [-84.81102, 11.632733],
-};
 
 export const OneRegionBtn = forwardRef((props, ref) => {
-    const classNames = `${classes.regionBtn} ${props.className}`;
+	const classNames = `${classes.regionBtn} ${props.className}`;
+	const map = ref.current;
 
-    function clickHandler () {
+	function clickHandler() {
+		map.easeTo({
+			center: props.coordinates,
+			zoom: props.zoom,
+			duration: 1500,
+			bearing: 0,
+			essential: true,
+		});
 
-        ref.current.easeTo({
-            center: [14.213562, 53.541532],
-            zoom: 4,
-            duration: 1500,
-            bearing: 0,
-            essential: true
-    });
+		// // clear previous filters if any
+		// if (map.getLayer('country-hover')) {
+		//     map.setFilter('country-hover', null);
+		// }
+		// if (map.getLayer('country-touch')) {
+		//     map.setFilter('country-touch', null);
+		// }
+		// if (map.getLayer('country-blur')) {
+		//     map.setFilter('country-blur', null);
+		// }
+
+		// // set hoverable filter for region and blur filter outside region
+		// if (map.getLayer('country-hover')) {
+		//     map.setFilter('country-hover', ['==', ['get', 'region'], region]);
+		// }
+
+		// if (map.getLayer('country-touch')) {
+		//     map.setFilter('country-touch', ['==', ['get', 'region'], region]);
+		// }
+
+		// if (!map.getLayer('country-blur')) {
+		//     addBlurLayer(map);
+		// }
+		// map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
+
+		// // add event listeners to the filtered region of the map
+		// addDesktopEventListeners(map);
+
+		// startRound(map, region, 10);
+	}
+
+	// 	if (isMobile) {
+	// 		addTouchLayer(map);
+	// 	} else {
+	// 		addHoverLayer(map);
+	// 	}
     
-        // ref.map.current.easeTo({
-        //     center,
-        //     zoom,
-        //     duration: 1500,
-        //     bearing: 0,
-        //     essential: true,
-        // });
-
-        // // clear previous filters if any
-        // if (map.getLayer('country-hover')) {
-        //     map.setFilter('country-hover', null);
-        // }
-        // if (map.getLayer('country-touch')) {
-        //     map.setFilter('country-touch', null);
-        // }
-        // if (map.getLayer('country-blur')) {
-        //     map.setFilter('country-blur', null);
-        // }
-
-        // // set hoverable filter for region and blur filter outside region
-        // if (map.getLayer('country-hover')) {
-        //     map.setFilter('country-hover', ['==', ['get', 'region'], region]);
-        // }
-
-        // if (map.getLayer('country-touch')) {
-        //     map.setFilter('country-touch', ['==', ['get', 'region'], region]);
-        // }
-
-        // if (!map.getLayer('country-blur')) {
-        //     addBlurLayer(map);
-        // }
-        // map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
-
-        // // add event listeners to the filtered region of the map
-        // addDesktopEventListeners(map);
-
-        // startRound(map, region, 10);
-    }
-    return (
-        <button className={classNames} onClick={clickHandler}>{props.children}</button>
-    )
+	return (
+		<button className={classNames} onClick={clickHandler}>
+			{props.children}
+		</button>
+	);
 });
 
 /** creates all 4 region buttons */
 export const RegionBtns = forwardRef((props, ref) =>  {
     const regions = [
-        {name: 'Europe', className: classes.europe},
-        {name: 'Asia', className: classes.asia},
-        {name: 'Americas', className: classes.americas},
-        {name: 'Africa', className: classes.africa},
+        {name: 'Europe', className: classes.europe, coordinates: [14.213562, 53.541532], zoom: 3.5},
+        {name: 'Asia', className: classes.asia, coordinates: [77.367783, 32.17445], zoom: 2.5},
+        {name: 'Americas', className: classes.americas, coordinates: [-84.81102, 11.632733], zoom: 2.5},
+        {name: 'Africa', className: classes.africa, coordinates: [17.015762, 8.895926], zoom: 2.8},
     ];
     const buttons = [];
 
@@ -135,6 +128,8 @@ export const RegionBtns = forwardRef((props, ref) =>  {
 					<OneRegionBtn
 						key={region.name}
 						className={region.className}
+                        coordinates={region.coordinates}
+                        zoom={region.zoom}
 						ref={ref}
 					>
 						{region.name}
@@ -150,23 +145,5 @@ export const RegionBtns = forwardRef((props, ref) =>  {
 });
 
 
-// region button click listeners.
-// const addClickListenersToRegionBtns = (map) => {
-// 	const addFlyOnClick = (button, region, center, zoom) => {
-// 		button.click(() => {
-			
-// 		});
-// 	};
 
-// 	if (isMobile) {
-// 		addTouchLayer(map);
-// 	} else {
-// 		addHoverLayer(map);
-// 	}
-
-// 	addFlyOnClick($('#europeBtn'), 'Europe', centerCoordinates.europe, 3.5);
-// 	addFlyOnClick($('#asiaBtn'), 'Asia', centerCoordinates.asia, 2.5);
-// 	addFlyOnClick($('#africaBtn'), 'Africa', centerCoordinates.africa, 2.8);
-// 	addFlyOnClick($('#americasBtn'), 'Americas', centerCoordinates.americas, 2.5);
-// };
 
