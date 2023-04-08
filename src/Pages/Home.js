@@ -9,7 +9,7 @@ import { ChooseARegionTitle, MapItTitle } from '../Components/Titles';
 import { PlayBtn, RegionBtns } from '../Components/Buttons';
 import { useRef, useState, useEffect } from 'react';
 import { playBtnActions } from '../store/play-btn-slice';
-import { rotateGlobe } from '../js/map';
+import { worldviewFilters, rotateGlobe } from '../js/map';
 
 // import { firewall } from './firewall.js';
 // To use Mapbox GL with Create React App, an exclamation point has to be added 
@@ -24,18 +24,7 @@ export const initialZoom = () => {
 	}
 };
 
-// exclude disputed areas as well as worldviews with conflicting interests:
-// Russia regarding Crimea, Serbia regarding Kosovo,
-// Morocco regarding Western Sahara and
-// Argentina regarding Falkland Islands.
-export const worldviewFilters = [
-	['has', 'color_group'],
-	['match', ['get', 'disputed'], ['true'], false, true],
-	['match', ['get', 'worldview'], ['RU'], false, true],
-	['match', ['get', 'worldview'], ['CN'], false, true],
-	['match', ['get', 'worldview'], ['MA'], false, true],
-	['match', ['get', 'worldview'], ['AR'], false, true],
-];
+
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR2eW5odG0wMmFvM29zMXJ4ZnJtOWoxIn0.CSvzhr8LhmOHcUxYZ0CiTg';
