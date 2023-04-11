@@ -7,13 +7,13 @@ const playBtnSlice = createSlice({
 		mobile: false
 	},
 	reducers: {
-		add(state) {
+		add: state => {
 			state.visible = true;
 		},
-		remove(state) {
+		remove: state => {
 			state.visible = false;
 		},
-		setMobile(state) {
+		setMobile: state => {
 			state.mobile = true;
 		}
 	},

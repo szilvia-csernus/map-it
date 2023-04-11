@@ -7,11 +7,11 @@ const localStorageSlice = createSlice({
         playedBefore: window.localStorage.getItem('playedBefore') === 'true' ? true : false
 	},
 	reducers: {
-		setVisitedBefore(state) {
+		setVisitedBefore: state => {
             window.localStorage.setItem('visitedBefore', 'true');
 			state.visitedBefore = true;
 		},
-		setPlayedBefore(state) {
+		setPlayedBefore: state => {
             window.localStorage.setItem('playedBefore', 'true');
 			state.playedBefore = true;
 		},

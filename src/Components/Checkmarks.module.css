@@ -1,0 +1,45 @@
+.checkmarks {
+  position: absolute;
+  top: 6rem;
+  z-index: 1;
+  display: flex;
+}
+
+.correct {
+  fill: var(--correct);
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0 10px black);
+  animation: bump 1s ease-in-out;
+}
+
+.incorrect {
+  stroke: var(--incorrect);
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0 10px black);
+  animation: bump 1s ease-in-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -62,15 +62,3 @@
   opacity: 0;
   animation: appear .2s ease-in forwards;
 }
-
-@keyframes appear {
-    from {
-      opacity: 0;   
-    }
-    to {
-      opacity: 1;   
-    }
-  }
-
-
-

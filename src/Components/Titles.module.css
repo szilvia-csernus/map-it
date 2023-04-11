@@ -20,3 +20,36 @@
   font-size: var(--choose-font-size);
   animation: bump 1s ease-in-out;
 }
+
+.findCountry {
+  position: absolute;
+  top: 3.5rem;
+  z-index: 1;
+  font-weight: bold;
+  color: var(--main-font-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--main-font-family);
+  font-size: var(--question-font-size);
+  animation: bump 1s ease-in-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

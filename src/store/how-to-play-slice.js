@@ -6,12 +6,12 @@ const howToPlaySlice = createSlice({
 		visible: false
 	},
 	reducers: {
-		add(state) {
+		add: state => {
             console.log('howToPlaySlice add', state)
 			state.visible = true;
             return state;
 		},
-		remove(state) {
+		remove: state => {
 			state.visible = false;
 		}
 	},

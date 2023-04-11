@@ -10,6 +10,7 @@ const gameSlice = createSlice({
         questionMarkIcon: false,
         chooseRegionTitle: false,
         regionBtns: false,
+		findCountry: false,
 	},
 	reducers: {
 		setFirstTime(state) {
@@ -50,6 +51,12 @@ const gameSlice = createSlice({
         },
         removeRegionBtns(state) {
             state.regionBtns = false
+        },
+        addFindCountry(state) {
+            state.findCountry = true
+        },
+        removeFindCountry(state) {
+            state.findCountry = false
         }
         
 	},
@@ -58,24 +65,3 @@ const gameSlice = createSlice({
 export const gameActions = gameSlice.actions;
 
 export default gameSlice;
-
-
-// used to center the flying animation the middle of the regions.
-const centerCoordinates = {
-	europe: [14.213562, 53.541532],
-	asia: [77.367783, 32.17445],
-	africa: [17.015762, 8.895926],
-	americas: [-84.81102, 11.632733],
-};
-
-// add region button click listeners
-
-// const showChooseRegionTitle = () => {
-// 	$('h1')
-// 		.removeClass('title')
-// 		.addClass('choose')
-// 		.fadeIn('slow')
-// 		.text('Choose a region!');
-// };
-
-// Starts the game.

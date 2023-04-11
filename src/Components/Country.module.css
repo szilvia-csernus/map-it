@@ -1,0 +1,52 @@
+.country {
+  position: absolute;
+  top: 8.5rem;
+  z-index: 1;
+  background-color: var(--secondary-bg-color);
+  font-size: var(--country-font-size);
+  font-weight: 700;
+  color: var(--secondary-font-color);
+  box-shadow: 4px 4px 15px var(--primary-color);
+  text-shadow: none;
+  padding: .2rem 1.8rem;
+  border-radius: 1.5rem;
+  opacity: 0;
+  animation: bump 1s forwards;
+}
+
+.countryEurope {
+  border: 2px solid var(--violet)
+}
+
+.countryAfrica {
+  border: 2px solid var(--yellow)
+}
+
+.countryAsia {
+  border: 2px solid var(--fuchsia)
+}
+
+.countryAmericas {
+  border: 2px solid var(--orange);
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

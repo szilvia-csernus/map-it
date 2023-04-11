@@ -5,16 +5,21 @@ import { ReactComponent as ExitIcon } from '../assets/icons/exit.svg';
 import { ReactComponent as QuestionMarkIcon } from '../assets/icons/questionMark.svg';
 import { ReactComponent as StarIcon } from '../assets/icons/star.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { ChooseARegionTitle, MapItTitle } from '../Components/Titles';
-import { PlayBtn, RegionBtns } from '../Components/Buttons';
+import { ChooseARegionTitle, FindTheCountryTitle, MapItTitle } from '../Components/Titles';
+import PlayBtn from '../Components/PlayBtn';
+import RegionBtns from '../Components/RegionBtns';
 import { useRef, useState, useEffect } from 'react';
 import { playBtnActions } from '../store/play-btn-slice';
+import { howToPlayActions } from '../store/how-to-play-slice';
 import { worldviewFilters, rotateGlobe } from '../js/map';
 
 // import { firewall } from './firewall.js';
 // To use Mapbox GL with Create React App, an exclamation point has to be added 
 // to exclude mapbox-gl from transpilation 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import Checkmarks from '../Components/Checkmarks';
+import Country from '../Components/Country';
+
 
 export const initialZoom = () => {
 	if (window.innerWidth < 600) {
@@ -23,8 +28,6 @@ export const initialZoom = () => {
 		return 1.5;
 	}
 };
-
-
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR2eW5odG0wMmFvM29zMXJ4ZnJtOWoxIn0.CSvzhr8LhmOHcUxYZ0CiTg';
@@ -43,6 +46,8 @@ export default function Home () {
 	const mapItTitleVisible = useSelector((state) => state.gameSlice.mapItTitle);
 	const playBtnVisible = useSelector((state) => state.playBtnSlice.visible);
 	const regionBtnsVisible = useSelector((state) => state.gameSlice.regionBtns);
+	const findTheCountryTitleVisible = useSelector((state) => state.gameSlice.findCountry);
+	const checkmarkCanvasPresent = useSelector(state => state.answersSlice.checkmarkCanvasPresent);
 
 	const mapContainer = useRef(null);
 	const map = useRef(null);
@@ -109,7 +114,9 @@ export default function Home () {
 	});
 
 	
-
+	const clickQusestionMarkIconHandler = () => {
+		dispatch(howToPlayActions.add())
+	}
 	
 
 
@@ -132,6 +139,7 @@ export default function Home () {
 			{questionMarkIconVisible && (
 				<QuestionMarkIcon
 					className={classes.questionMark}
+					onClick={clickQusestionMarkIconHandler}
 					aria-label="exit icon"
 				/>
 			)}
@@ -140,6 +148,9 @@ export default function Home () {
 			)}
 			{chooseRegionTitleVisible && <ChooseARegionTitle />}
 			{regionBtnsVisible && <RegionBtns ref={map} />}
+			{findTheCountryTitleVisible && <FindTheCountryTitle />}
+			{checkmarkCanvasPresent && <Checkmarks />}
+			{findTheCountryTitleVisible && <Country ref={map} />}
 		</>
 	);
 }
