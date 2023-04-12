@@ -1,17 +1,18 @@
 import { data } from '../assets/data/countries-with-region';
 import { roundActions } from './round-slice';
+import { answersActions } from './answers-slice';
 import TimeOut from '../js/timeout';
+import store from '.';
+import { setSelectEventListeners, enableMapInteraction } from './map-event-listeners';
 
-// import {
-// 	addFeedbackLayer,
-// 	removeFeedbackLayer,
-// 	clickedCountryCode,
-// 	clickEventHandler,
-// 	resetClickedCountryCode,
-// } from './layers.js';
+import {
+	// addFeedbackLayer,
+	// removeFeedbackLayer,
+	// clickedCountryCode,
+	// clickEventHandler,
+	// resetClickedCountryCode,
+} from '../js/map-layers';
 
-// import { isMobile } from './buttons.js';
-// import TimeOut from './timeout.js';
 // import { disableMapInteraction } from './exit.js';
 
 // let score = 0;
@@ -38,30 +39,7 @@ import TimeOut from '../js/timeout';
 // 	}
 // };
 
-// // we define this function on the global scope so that we can reference it in exit.js
-// // when it needs to be removed
-// export let setDblClickFeedbackLayer = () => {};
 
-// /** double click event listener for selecting a country  */
-// const setClickSelectEventListeners = (
-// 	map,
-// 	countryCode,
-// 	increaseScore,
-// 	callback
-// ) => {
-// 	setDblClickFeedbackLayer = (event) => {
-// 		clickEventHandler(event);
-
-// 		// if clicked item has no id then we just ignore it.
-// 		if (clickedCountryCode) {
-// 			map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
-// 			removeFeedbackLayer(map);
-// 			addFeedback(map, countryCode, increaseScore, callback);
-// 		}
-// 	};
-
-// 	map.on('dblclick', 'country-hover', setDblClickFeedbackLayer);
-// };
 
 // // we define these functions on the global scope so later can be referenced in exit.js when we
 // // want to remove them from the event listeners.
@@ -130,15 +108,7 @@ import TimeOut from '../js/timeout';
 // 	map.on('touchstart', 'country-touch', touchStartFunction);
 // };
 
-// /** remove previously clicked country's layers and add updated event listeners */
-// const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
-// 	removeFeedbackLayer(map);
-// 	if (!isMobile) {
-// 		setClickSelectEventListeners(map, countryCode, increaseScore, callback);
-// 	} else {
-// 		setTouchSelectEventListeners(map, countryCode, increaseScore, callback);
-// 	}
-// };
+
 
 /** generate unique indecies from the countries array and
  * return an array with the given number of country codes.*/
@@ -155,10 +125,13 @@ const getRandomCountryCodes = (countries, num) => {
 };
 
 /** generates an array of unique countries in the region */
-export const getQuestions = (region, num, dispatch) => {
+export const getQuestions = (dispatch) => {
+	const region = store.getState().roundSlice.region;
+	const nrOfQuestions = store.getState().roundSlice.nrOfQuestions;
+
 	const allCodesInRegion = Object.keys(data[region]);
 
-	const randomCodes = getRandomCountryCodes(allCodesInRegion, num);
+	const randomCodes = getRandomCountryCodes(allCodesInRegion, nrOfQuestions);
 
 	const questions = [];
 	for (const code of randomCodes) {
@@ -166,29 +139,20 @@ export const getQuestions = (region, num, dispatch) => {
 		questions.push([code, country]);
 	}
 
-	console.log(questions)
+	console.log(questions);
 	dispatch(roundActions.setQuestions(questions));
 };
 
-const enableMapInteraction = (map) => {
-	// Set scroll and drag functions
-	map.dragPan.enable();
-	map.scrollZoom.enable();
-	map.touchZoomRotate.enable();
-};
 
 export const timeOutForCountry = new TimeOut();
 
 /** logic for asking one country */
-export const oneQuestion = (map, code, country, region, callback) => {
+export const oneQuestion = (map, dispatch) => {
+	
 	enableMapInteraction(map);
 	// resetClickedCountryCode();
 	// // remove previous question's feedbacks
 	// removeFeedbackLayer(map);
-	// $('#countryLabel').remove();
-	// $('body').append(
-	// 	`<div id="countryLabel" class="country country${region}">${country}</div>`
-	// );
-	// setSelectEventListeners(map, code, increaseScore, callback);
-};
 
+	setSelectEventListeners(map, dispatch);
+};

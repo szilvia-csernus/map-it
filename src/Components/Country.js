@@ -1,24 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './Country.module.css';
-import { useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useState } from 'react';
 import { oneQuestion } from '../store/question-action-creators';
 
 const Country = forwardRef((props, ref) => {
+
 	const map = ref.current;
+    const dispatch = useDispatch();
 	const currentCountryName = useSelector(
 		(state) => state.roundSlice.currentCountryName
 	);
-    const currentCountryCode = useSelector(state => state.roundSlice.currentCountryCode);
+    // const currentCountryCode = useSelector(state => state.roundSlice.currentCountryCode);
 	const region = useSelector((state) => state.roundSlice.region);
 	const classNames = `${classes.country} ${classes[`country${region}`]}`;
+    // const mobile = useSelector(state => state.playBtnSlice.mobile);
 
-    useEffect(() => {
-        if (currentCountryCode === null) {
-            // end of round logic
-        }
-        oneQuestion(map, currentCountryCode, currentCountryName, region);
-    }, [map, currentCountryCode, currentCountryName, region])
+    oneQuestion(map, dispatch);
 
 	return (
 		<>{currentCountryName && <div className={classNames}>{currentCountryName}</div>}</>

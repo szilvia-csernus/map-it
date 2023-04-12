@@ -1,5 +1,6 @@
 import classes from './RegionBtns.module.css';
-import { addTouchLayer, addHoverLayer } from '../js/map-layers';
+import { addTouchLayer} from '../js/map-layers';
+import { addHoverLayer } from '../store/map-hover-layer';
 import { startRound } from '../store/round-action-creators';
 import { useSelector, useDispatch } from 'react-redux';
 import { forwardRef } from 'react';

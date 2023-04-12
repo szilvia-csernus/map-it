@@ -13,7 +13,7 @@ const store = configureStore({
         howToPlaySlice: howToPlaySlice.reducer,
         localStorageSlice: localStorageSlice.reducer,
         answersSlice: answersSlice.reducer,
-        roundSlice: roundSlice.reducer
+        roundSlice: roundSlice.reducer,
     }
 })
 

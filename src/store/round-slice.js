@@ -27,13 +27,13 @@ const roundSlice = createSlice({
             state.currentCountryName = currentCountry[1];
             state.questions = questions;
         },
-        nextCurrentCountry(state) {
+        nextCountry(state) {
             if (state.questions.length === 0) {
                 return;
             }
-            const nextCountry = state.questions.pop();
-            state.currentCountryCode = nextCountry[0];
-            state.currentCountryName = nextCountry[1];
+            const nextcountry = state.questions.pop();
+            state.currentCountryCode = nextcountry[0];
+            state.currentCountryName = nextcountry[1];
         },
         clearQuestions(state) {
             state.questions = []

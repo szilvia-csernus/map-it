@@ -5,6 +5,8 @@ const answersSlice = createSlice({
 	initialState: {
 		checkmarkCanvasPresent: false,
 		list: [],
+		clickedCountryCode: null,
+		score: 0
 	},
 	reducers: {
 		addCheckmarkCanvas(state) {
@@ -15,15 +17,16 @@ const answersSlice = createSlice({
 		},
 		addCorrect(state) {
 			state.list.push(true);
-			return state;
+			state.score++;
 		},
 		addIncorrect(state) {
 			state.list.push(false);
-			return state;
+		},
+		setClickedCountryCode(state, action) {
+			state.clickedCountryCode = action.payload
 		},
 		reset(state) {
 			state.list = [];
-			return state;
 		},
 	},
 });
