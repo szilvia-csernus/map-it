@@ -120,7 +120,7 @@ export function mouseLeaveHoverEventListenerHandler() {
 
 /** adds hover effect onto the map */
 export const addDesktopHoverEventListeners = (map) => {
-	const mobile = store.getState().playBtnSlice.mobile;
+	const mobile = store.getState().gameSlice.mobile;
 
 	if (map.getLayer('country-hover') && !mobile) {
 		map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);

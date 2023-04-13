@@ -1,17 +1,17 @@
 import classes from './PlayBtn.module.css';
-import { playBtnActions } from '../store/play-btn-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { game } from '../store/game-action-creators';
 import { forwardRef } from 'react';
 import { rotateGlobe } from '../js/map';
+import { gameActions } from '../store/game-slice';
 
 
 
 const PlayBtn = forwardRef((props, ref) => {
     const map = ref;
     const dispatch = useDispatch();
-    const visible = useSelector(state => state.playBtnSlice.visible);
-    const mobile = useSelector(state => state.playBtnSlice.mobile);
+    const visible = useSelector(state => state.gameSlice.playBtn);
+    const mobile = useSelector(state => state.gameSlice.mobile);
     const firstTime = useSelector(state => state.gameSlice.firstTime);
     const localStorageState = useSelector(state => state.localStorageSlice);
 	
@@ -26,7 +26,7 @@ const PlayBtn = forwardRef((props, ref) => {
 			);
 	};
     const touchStartEventHandler = () => {
-        dispatch(playBtnActions.setMobile(true))
+        dispatch(gameActions.setMobile(true))
     }
 	return (
 		<>

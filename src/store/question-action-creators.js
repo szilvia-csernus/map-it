@@ -124,7 +124,7 @@ const getRandomCountryCodes = (countries, num) => {
 	return codes;
 };
 
-/** generates an array of unique countries in the region */
+/** generates an array of unique countries in the region and sets it to the store */
 export const getQuestions = (dispatch) => {
 	const region = store.getState().roundSlice.region;
 	const nrOfQuestions = store.getState().roundSlice.nrOfQuestions;

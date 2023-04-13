@@ -96,4 +96,20 @@
     to {
       opacity: 1;   
     }
-  }
+}
+
+.questionMark {
+  position: absolute;
+  top: 1.5vh;
+  right: 1rem;
+  z-index: 1;
+  font-weight: bold;
+  width: 1.9rem;
+  height: 2.4rem;
+  color: var(--main-font-color);
+  filter: drop-shadow( 0 0 10px var(--primary-color));
+  font-family: var(--main-font-family);
+  cursor: pointer;
+  opacity: 0;
+  animation: appear .2s ease-in forwards;
+}

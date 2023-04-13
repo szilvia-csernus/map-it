@@ -14,6 +14,7 @@ const answersSlice = createSlice({
 		},
 		removeCheckmarkCanvas(state) {
 			state.checkmarkCanvasPresent = false;
+			state.list = [];
 		},
 		addCorrect(state) {
 			state.list.push(true);
@@ -23,11 +24,14 @@ const answersSlice = createSlice({
 			state.list.push(false);
 		},
 		setClickedCountryCode(state, action) {
-			state.clickedCountryCode = action.payload
+			state.clickedCountryCode = action.payload;
 		},
-		reset(state) {
-			state.list = [];
+		clearClickedCountryCode(state) {
+			state.clickedCountryCode = null;
 		},
+		resetScore(state) {
+			state.score = 0;
+		}
 	},
 });
 

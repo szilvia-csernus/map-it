@@ -4,13 +4,12 @@ const gameSlice = createSlice({
 	name: 'gameSlice',
 	initialState: {
 		firstTime: true,
-        mapItTitle: true,
-        exitIcon: false,
-        starIcon: false,
-        questionMarkIcon: false,
-        chooseRegionTitle: false,
-        regionBtns: false,
-		findCountry: false,
+		mapItTitle: true,
+		exitIcon: false,
+		questionMarkIcon: false,
+		mobile: false,
+		playBtn: false,
+		newGameBtn: false,
 	},
 	reducers: {
 		setFirstTime(state) {
@@ -28,37 +27,27 @@ const gameSlice = createSlice({
 		removeExitIcon(state) {
 			state.exitIcon = false;
 		},
-		addStarIcon(state) {
-			state.starIcon = true;
-		},
-		removeStarIcon(state) {
-			state.starIcon = false;
-		},
 		addQuestionMarkIcon(state) {
 			state.questionMarkIcon = true;
 		},
 		removeQuestionMarkIcon(state) {
 			state.questionMarkIcon = false;
 		},
-        addChooseRegionTitle(state) {
-            state.chooseRegionTitle = true
-        },
-        removeChooseRegionTitle(state) {
-            state.chooseRegionTitle = false
-        },
-        addRegionBtns(state) {
-            state.regionBtns = true
-        },
-        removeRegionBtns(state) {
-            state.regionBtns = false
-        },
-        addFindCountry(state) {
-            state.findCountry = true
-        },
-        removeFindCountry(state) {
-            state.findCountry = false
-        }
-        
+		setMobile: (state) => {
+			state.mobile = true;
+		},
+		addPlayBtn(state) {
+			state.playBtn = true;
+		},
+		removePlayBtn(state) {
+			state.playBtn = false;
+		},
+		addNewGameBtn(state) {
+			state.newGameBtn = true;
+		},
+		removeNewGameBtn(state) {
+			state.newGameBtn = false;
+		},
 	},
 });
 

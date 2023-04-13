@@ -20,9 +20,9 @@ const OneRegionBtn = forwardRef((props, ref) => {
 		// set region to the chosen region
 		dispatch(roundActions.setRegion(props.region));
 		// remove 'Choose a region! title'
-		dispatch(gameActions.removeChooseRegionTitle());
+		dispatch(roundActions.removeChooseRegionTitle());
 		// remove region buttons
-		dispatch(gameActions.removeRegionBtns());
+		dispatch(roundActions.removeRegionBtns());
 		// set canvas for checkmarks
 		dispatch(answersActions.addCheckmarkCanvas());
 		
@@ -39,7 +39,7 @@ const OneRegionBtn = forwardRef((props, ref) => {
 /** creates all 4 region buttons */
 const RegionBtns = forwardRef((props, ref) => {
 	const map = ref.current;
-	const mobile = useSelector((state) => state.playBtnSlice.mobile);
+	const mobile = useSelector((state) => state.gameSlice.mobile);
 	const nrOfQuestions = useSelector((state) => state.roundSlice.nrOfQuestions);
 
 	if (props.mobile) {

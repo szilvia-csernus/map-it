@@ -1,7 +1,6 @@
 import { answersActions } from './answers-slice';
 import store from '.';
 import { registerAnswer } from './answer-action-creators';
-import { roundActions } from './round-slice';
 
 export const enableMapInteraction = (map) => {
 	// Set scroll and drag functions
@@ -10,10 +9,12 @@ export const enableMapInteraction = (map) => {
 	map.touchZoomRotate.enable();
 };
 
+// we need this variable on this file's scope, because reading clickedCountryCode
+// from the store would not update in time for line 47.
 let clickedCountryCode;
 
-export const clickEventHandler = (event, dispatch) => {
-	const currentCountryCode = store.getState().roundSlice.currentCountryCode;
+export const clickEventHandler = (event, map, dispatch) => {
+	const currentCountryCode = store.getState().roundSlice.currentCountry[0];
 	// if clicked item has no id the click won't register a clicked country.
 	if (event.features) {
 		// filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
@@ -25,37 +26,36 @@ export const clickEventHandler = (event, dispatch) => {
 				: event.features[0].properties.iso_3166_1;
 
 		dispatch(answersActions.setClickedCountryCode(clickedCountryCode));
-		registerAnswer(currentCountryCode, clickedCountryCode, dispatch);
-		dispatch(roundActions.nextCountry());
+		registerAnswer(map, currentCountryCode, clickedCountryCode, dispatch);
 	}
 };
 
 
 // we define this function on the global scope so that we can reference it in exit.js
 // when it needs to be removed
-export let setDblClickFeedbackHandler = () => {};
+export let setDblClickSelectHandler = () => {};
 
 /** double click event listener for selecting a country  */
 const setClickSelectEventListeners = (map, dispatch) => {
-	setDblClickFeedbackHandler = (event) => {
+	setDblClickSelectHandler = (event) => {
 		console.log(event)
-		clickEventHandler(event, dispatch);
+		clickEventHandler(event, map, dispatch);
 		// if clicked item has no id then we just ignore it.
-		const clickedCountryCode = store.getState().answersSlice.clickedCountryCode;
+		// const clickedCountryCode = store.getState().answersSlice.clickedCountryCode;
 		
 		if (clickedCountryCode) {
-			map.off('dblclick', 'country-hover', setDblClickFeedbackHandler);
+			map.off('dblclick', 'country-hover', setDblClickSelectHandler);
 			// removeFeedbackLayer(map);
 			// addFeedback(map, countryCode, increaseScore, callback);
 		}
 	};
-	map.on('dblclick', 'country-hover', setDblClickFeedbackHandler);
+	map.on('dblclick', 'country-hover', setDblClickSelectHandler);
 };
 
 /** remove previously clicked country's layers and add updated event listeners */
 export const setSelectEventListeners = (map, dispatch) => {
 	console.log(map)
-	const mobile = store.getState().playBtnSlice.mobile;
+	const mobile = store.getState().gameSlice.mobile;
 	
 	// removeFeedbackLayer(map);
 	if (!mobile) {

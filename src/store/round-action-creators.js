@@ -1,29 +1,27 @@
-import { addBlurLayer } from '../js/map-layers';
+import { addBlurLayer } from './map-blur-layer';
 import { addDesktopHoverEventListeners } from './map-hover-layer';
 import { gameActions } from './game-slice';
-import { roundActions } from './round-slice';
-import { checkmarksActions } from './answers-slice';
 
 import TimeOut from '../js/timeout.js';
 import { getQuestions } from './question-action-creators';
-import { useQuestions } from '../hooks/use-questions';
-// import roundSlice from './round-slice';
 import store from '.';
+import { answersActions } from './answers-slice';
+import { roundActions } from './round-slice';
+import { resetMap } from '../js/map';
+import { restartGame } from './game-action-creators';
 
 
 
-// export const restartRound = (map) => {
-// 	removeNewGameBtn();
-// 	restartGame(map);
-// };
+export const restartRound = (map, dispatch) => {
+	dispatch(gameActions.removenewGameBtn())
+	restartGame(map, dispatch);
+};
 
 
 // export these timeOut functions so we can clear them up on exit
 export const timeOutForMinZoom = new TimeOut();
 export const timeOutForQuestion = new TimeOut();
 
-// let questions;
-// export const clearQuestions = () => (questions = null);
 
 /** start a round on the given region */
 export const startRound = (
@@ -33,15 +31,7 @@ export const startRound = (
 ) => {
 	
 	const region = store.getState().roundSlice.region;
-	// const nrOfQuestions = store.getState().roundSlice.nrOfQuestions;
-	const mobile = store.getState().playBtnSlice.mobile;
 
-	// const roundState = store.getState().roundSlice;
-	// const playBtnState = store.getState().playBtnSlice;
-	// const region = roundState.region;
-	// const mobile = playBtnState.mobile;
-	console.log(region)
-	console.log(mobile)
 	// clear previous filters if any
 	if (map.getLayer('country-hover')) {
 		map.setFilter('country-hover', null);
@@ -89,8 +79,16 @@ export const startRound = (
 	);
 
 	timeOutForQuestion.setTimeOutFunction(() => {
-		dispatch(gameActions.addFindCountry());
+		dispatch(roundActions.addFindCountry());
 		getQuestions(dispatch);
 	}, 1000);
 	
 };
+
+export const endRound = (map, dispatch) => {
+	resetMap(map);
+	dispatch(roundActions.removeFindCountry());
+	dispatch(roundActions.clearCurrentCountry());
+	dispatch(answersActions.removeCheckmarkCanvas());
+	dispatch(gameActions.addNewGameBtn())
+}

@@ -4,8 +4,7 @@ import { answersActions } from '../store/answers-slice.js';
 
 import { worldviewFilters } from './map.js';
 
-const minZoom = (map) => map.getMinZoom() - 0.1;
-const maxZoom = (map) => map.getMaxZoom() + 0.5;
+import { minZoom, maxZoom } from './map.js';
 
 /** this layer is used on mobile devices to provide a touch-selectable layer to
  * allow identifying the touched country.  */
@@ -33,29 +32,7 @@ export const removeTouchLayer = (map) => {
 	}
 };
 
-/** add a blur layer to map to allow filtering out regions */
-export const addBlurLayer = (map) => {
-	map.addLayer({
-		id: `country-blur`,
-		filter: ['all', ...worldviewFilters],
-		minzoom: minZoom(map),
-		maxzoom: maxZoom(map),
-		paint: {
-			'fill-color': 'hsla(208, 66%, 35%, 0.6)',
-		},
-		source: 'country-boundaries',
-		'source-layer': 'country_boundaries',
-		type: 'fill',
-	});
-};
 
-/** remove blur layer and its filters if they exist */
-export const removeBlurLayer = (map) => {
-	if (map.getLayer('country-blur')) {
-		map.setFilter('country-blur', null);
-		map.removeLayer('country-blur');
-	}
-};
 
 // // timeout functions to allow time for feedback and flying animations.
 // export const timeOutForCorrectFeedback = new TimeOut();

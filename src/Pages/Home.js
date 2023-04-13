@@ -1,17 +1,18 @@
 import classes from './Home.module.css';
 import Intro from '../Components/Intro';
 import HowToPlay from '../Components/HowToPlay';
-import { ReactComponent as ExitIcon } from '../assets/icons/exit.svg';
-import { ReactComponent as QuestionMarkIcon } from '../assets/icons/questionMark.svg';
-import { ReactComponent as StarIcon } from '../assets/icons/star.svg';
+import { ExitIcon } from '../Components/Exit';
+import { QuestionMarkIcon } from '../Components/HowToPlay';
+import { StarIcon } from '../Components/HighScores';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChooseARegionTitle, FindTheCountryTitle, MapItTitle } from '../Components/Titles';
 import PlayBtn from '../Components/PlayBtn';
 import RegionBtns from '../Components/RegionBtns';
 import { useRef, useState, useEffect } from 'react';
-import { playBtnActions } from '../store/play-btn-slice';
-import { howToPlayActions } from '../store/how-to-play-slice';
 import { worldviewFilters, rotateGlobe } from '../js/map';
+import { HighScoresBoard } from '../Components/HighScores';
+import { initialZoom } from '../js/map';
+import NewGameBtn from '../Components/NewGameBtn';
 
 // import { firewall } from './firewall.js';
 // To use Mapbox GL with Create React App, an exclamation point has to be added 
@@ -19,15 +20,8 @@ import { worldviewFilters, rotateGlobe } from '../js/map';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import Checkmarks from '../Components/Checkmarks';
 import Country from '../Components/Country';
-
-
-export const initialZoom = () => {
-	if (window.innerWidth < 600) {
-		return 1;
-	} else {
-		return 1.5;
-	}
-};
+import { HighScoresTitle, HighScoresBtn } from '../Components/HighScores';
+import { gameActions } from '../store/game-slice';
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR2eW5odG0wMmFvM29zMXJ4ZnJtOWoxIn0.CSvzhr8LhmOHcUxYZ0CiTg';
@@ -39,15 +33,24 @@ export default function Home () {
 	const questionMarkIconVisible = useSelector(
 		(state) => state.gameSlice.questionMarkIcon
 	);
-	const starIconVisible = useSelector((state) => state.gameSlice.starIcon);
+	const starIconVisible = useSelector(
+		(state) => state.highScoresSlice.starIcon
+	);
 	const chooseRegionTitleVisible = useSelector(
-		(state) => state.gameSlice.chooseRegionTitle
+		(state) => state.roundSlice.chooseRegionTitle
 	);
 	const mapItTitleVisible = useSelector((state) => state.gameSlice.mapItTitle);
-	const playBtnVisible = useSelector((state) => state.playBtnSlice.visible);
-	const regionBtnsVisible = useSelector((state) => state.gameSlice.regionBtns);
-	const findTheCountryTitleVisible = useSelector((state) => state.gameSlice.findCountry);
+	const playBtnVisible = useSelector((state) => state.gameSlice.playBtn);
+	const regionBtnsVisible = useSelector((state) => state.roundSlice.regionBtns);
+	const findTheCountryTitleVisible = useSelector((state) => state.roundSlice.findCountry);
 	const checkmarkCanvasPresent = useSelector(state => state.answersSlice.checkmarkCanvasPresent);
+	const highScoresTitleVisible = useSelector(state => state.highScoresSlice.highScoresTitle);
+	const highScoresBtnVisible = useSelector(state => state.highScoresSlice.highScoresBtn);
+	const highScoresBoardVisible = useSelector(state => state.highScoresSlice.highScoresBoard);
+	const newGameBtnVisible = useSelector(state => state.gameSlice.newGameBtn);
+
+	const playedBefore =
+		window.localStorage.getItem('playedBefore') === 'true' ? true : false;
 
 	const mapContainer = useRef(null);
 	const map = useRef(null);
@@ -105,20 +108,13 @@ export default function Home () {
 			document.getElementsByClassName('mapbox-improve-map')[0].remove();
 			// callback(map);
 			// document.getElementById('introContainer').remove();
-			dispatch(playBtnActions.add());
+			dispatch(gameActions.addPlayBtn());
 		});
 
 		// map.current.on('error', () => {
 		// 	window.location.href = '../error.html';
 		// });
 	});
-
-	
-	const clickQusestionMarkIconHandler = () => {
-		dispatch(howToPlayActions.add())
-	}
-	
-
 
 	// If another event cancels the touch event the default would be to jump back within the code when the player returns.
 	// This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault().
@@ -128,29 +124,21 @@ export default function Home () {
 		<>
 			{mapItTitleVisible && <MapItTitle />}
 			<Intro />
-
 			<div ref={mapContainer} className={classes.mapContainer} />
 			{playBtnVisible && <PlayBtn ref={map} />}
-
 			{howToPlayVisible && <HowToPlay />}
-			{exitIconVisible && (
-				<ExitIcon className={classes.exit} aria-label="exit icon" />
-			)}
-			{questionMarkIconVisible && (
-				<QuestionMarkIcon
-					className={classes.questionMark}
-					onClick={clickQusestionMarkIconHandler}
-					aria-label="exit icon"
-				/>
-			)}
-			{starIconVisible && (
-				<StarIcon className={classes.star} aria-label="exit icon" />
-			)}
+			{exitIconVisible && <ExitIcon ref={map} />}
+			{questionMarkIconVisible && <QuestionMarkIcon />}
+			{playedBefore && starIconVisible && <StarIcon />}
 			{chooseRegionTitleVisible && <ChooseARegionTitle />}
 			{regionBtnsVisible && <RegionBtns ref={map} />}
 			{findTheCountryTitleVisible && <FindTheCountryTitle />}
 			{checkmarkCanvasPresent && <Checkmarks />}
 			{findTheCountryTitleVisible && <Country ref={map} />}
+			{highScoresTitleVisible && <HighScoresTitle />}
+			{highScoresBtnVisible && <HighScoresBtn />}
+			{highScoresBoardVisible && <HighScoresBoard />}
+			{newGameBtnVisible && <NewGameBtn />}
 		</>
 	);
 }

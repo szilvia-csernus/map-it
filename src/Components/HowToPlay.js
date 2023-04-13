@@ -3,10 +3,11 @@ import classes from './HowToPlay.module.css';
 import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { howToPlayActions } from '../store/how-to-play-slice';
+import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.svg';
 
 // renders instructions screen & click event listener on "OK" button
-export default function HowToPlay (callback = () => {}) {
-    const mobile = useSelector(state => state.playBtnSlice.mobile);
+export default function HowToPlay () {
+    const mobile = useSelector(state => state.gameSlice.mobile);
 	const visitedBefore = useSelector(state => state.localStorageSlice.visitedBefore)
     // const howToPlayState = useSelector(state => state.howToPlaySlice);
     // const localStorageState = useSelector(state => state.localStorageSlice);
@@ -21,7 +22,6 @@ export default function HowToPlay (callback = () => {}) {
     function clickHandler() {
         dispatch(howToPlayActions.remove());
         // 	addHowToPlayIcon(isMobile, true);
-        // 	callback();
     }
 	
     return (
@@ -51,17 +51,18 @@ export default function HowToPlay (callback = () => {}) {
 		);
 };
 
+export const QuestionMarkIcon = () => {
+	const dispatch = useDispatch();
 
-// adds instructions (question mark) icon & click event listener
-// export const addHowToPlayIcon = (isMobile) => {
-// 	if (!document.getElementById('questionMark')) {
-// 		$('body').append(
-// 			'<img id="questionMark" class="questionMark" src="./assets/icons/questionMark.svg" alt="how to play icon"></img>'
-// 		);
-// 		$('#questionMark').click(function () {
-// 			// remove the icon so that user can't click it again when instructions are already rendered on the page.
-// 			$('#questionMark').remove();
-// 			addHowToPlay(isMobile, true);
-// 		});
-// 	}
-// };
+	const clickHandler = () => {
+		dispatch(howToPlayActions.add());
+	};
+
+	return (
+		<QuestionMarkSVG
+			className={classes.questionMark}
+			onClick={clickHandler}
+			aria-label="info icon"
+		/>
+	);
+}
