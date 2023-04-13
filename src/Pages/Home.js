@@ -138,7 +138,7 @@ export default function Home () {
 			{highScoresTitleVisible && <HighScoresTitle />}
 			{highScoresBtnVisible && <HighScoresBtn />}
 			{highScoresBoardVisible && <HighScoresBoard />}
-			{newGameBtnVisible && <NewGameBtn />}
+			{newGameBtnVisible && <NewGameBtn ref={map} />}
 		</>
 	);
 }

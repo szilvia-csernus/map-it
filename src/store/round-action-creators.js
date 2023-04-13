@@ -8,14 +8,7 @@ import store from '.';
 import { answersActions } from './answers-slice';
 import { roundActions } from './round-slice';
 import { resetMap } from '../js/map';
-import { restartGame } from './game-action-creators';
 
-
-
-export const restartRound = (map, dispatch) => {
-	dispatch(gameActions.removenewGameBtn())
-	restartGame(map, dispatch);
-};
 
 
 // export these timeOut functions so we can clear them up on exit

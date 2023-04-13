@@ -1,4 +1,4 @@
-.newGame {
+.newGameBtn {
   position: absolute;
   top: 47vh;
   z-index: 1;
@@ -16,7 +16,15 @@
   animation: appear 1s ease-in forwards;
 }
 
-.newGame:hover {
+.newGameBtn:hover {
   background-color: var(--primary-color-hover);
 }
 
+@keyframes appear {
+    from {
+      opacity: 0;   
+    }
+    to {
+      opacity: 1;   
+    }
+  }
