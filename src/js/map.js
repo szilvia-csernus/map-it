@@ -5,6 +5,8 @@ import {
 	mouseLeaveHoverEventListenerHandler,
 } from '../store/map-hover-layer';
 import { setDblClickSelectHandler } from '../store/map-event-listeners';
+import { removeFeedbackLayer } from './map-layers';
+import { marker } from './map-layers';
 
 // exclude disputed areas as well as worldviews with conflicting interests:
 // Russia regarding Crimea, Serbia regarding Kosovo,
@@ -30,17 +32,22 @@ export const initialZoom = () => {
 export const minZoom = (map) => map.getMinZoom() - 0.1;
 export const maxZoom = (map) => map.getMaxZoom() + 0.5;
 
-// Code for spinGlobe() function is adapted (and heavily modified)
-// from an example by mapbox.com:
-// https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
 
-// keep rotating as long as map.current.stop() gets fired which happens
-// when a region button gets clicked.
+
+// keep rotating as long as "mapForRotation.off('moveend', spinGlobe);" gets fired 
+
+// we define these 2 variables outside the function to be able to export them
+// in order to be able to stop spinning the globe later in the code.
+export let mapForRotation;
+export let spinGlobe = () => {};
 
 export const rotateGlobe = (ref) => {
-	const map = ref.current;
-	console.log(map);
-	const spinGlobe = () => {
+	mapForRotation = ref.current;
+	
+	// Code for spinGlobe() function is adapted (and heavily modified)
+	// from an example by mapbox.com:
+	// https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
+	spinGlobe = () => {
 		console.log('1 round');
 		let distancePerSecond = 360 / 100; // 100 seconds per one round
 		const center = ref.current.getCenter();
@@ -53,25 +60,10 @@ export const rotateGlobe = (ref) => {
 			easing: (n) => n,
 		});
 		// When animation is complete (1s), start spinning again.
-		map.once('moveend', spinGlobe);
+		mapForRotation.once('moveend', spinGlobe);
 	};
 
 	spinGlobe();
-
-	window.document.onmousedown = () => {
-		console.log('click!');
-		map.off('moveend', spinGlobe);
-		return (window.document.onmousedown = null);
-	};
-
-	// from Chrome Dev Tools, it seems like 'onmousedown' gets fired on the touch function too.
-	// If on real device it's not the case, uncomment this block!
-
-	// window.document.ontouchstart = () => {
-	// 	console.log('click!');
-	// 	map.off('moveend', spinGlobe);
-	// 	return window.document.ontouchstart = null
-	// };
 };
 
 /** disables dragging, scrolling and zooming on the map */
@@ -86,7 +78,7 @@ export const resetMap = (map, dispatch) => {
 	removeHoverLayer(map);
 	// removeTouchLayer(map);
 	removeBlurLayer(map);
-	// removeFeedbackLayer(map);
+	removeFeedbackLayer(map);
 
 	disableMapInteraction(map);
 
@@ -98,9 +90,9 @@ export const resetMap = (map, dispatch) => {
 	// map.off('touchstart','country-touch', touchStartFunction);
 	// map.off('touchend','country-touch', touchEndFunction);
 
-	// if (marker) {
-	//     marker.remove();
-	// }
+	if (marker) {
+	    marker.remove();
+	}
 
 	map.easeTo({
 		zoom: initialZoom(),

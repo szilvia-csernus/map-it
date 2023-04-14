@@ -54,7 +54,6 @@ export const startRound = (
 
 	// add hover event listeners to the filtered region of the map
 	addDesktopHoverEventListeners(map);
-	// resetScore();
 
 	// flies to selected region
 	map.easeTo({
@@ -79,9 +78,12 @@ export const startRound = (
 };
 
 export const endRound = (map, dispatch) => {
+
 	resetMap(map);
+
 	dispatch(roundActions.removeFindCountry());
 	dispatch(roundActions.clearCurrentCountry());
 	dispatch(answersActions.removeCheckmarkCanvas());
+
 	dispatch(gameActions.addNewGameBtn())
 }

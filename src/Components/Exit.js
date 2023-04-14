@@ -11,6 +11,7 @@ import { timeOutForCountry } from "../store/question-action-creators";
 import { timeOutForMinZoom, timeOutForQuestion } from "../store/round-action-creators";
 import { resetMap } from "../js/map";
 import { restartGame } from "../store/game-action-creators";
+import { timeOutForCorrectFeedback, timeOutForFlyAnimation, timeOutForIncorrectFeedback } from "../js/map-layers";
 
 
 
@@ -38,10 +39,9 @@ export const updateElements = (dispatch) => {
 	// add 'map it!' title
 	dispatch(gameActions.addMapItTitle());
 
-	// timeOutForShowScore.clearTimeOutFunction();
-	// timeOutForCorrectFeedback.clearTimeOutFunction();
-	// timeOutForIncorrectFeedback.clearTimeOutFunction();
-	// timeOutForFlyAnimation.clearTimeOutFunction();
+	timeOutForCorrectFeedback.clearTimeOutFunction();
+	timeOutForIncorrectFeedback.clearTimeOutFunction();
+	timeOutForFlyAnimation.clearTimeOutFunction();
 	timeOutForMinZoom.clearTimeOutFunction();
 	timeOutForQuestion.clearTimeOutFunction();
 	timeOutForCountry.clearTimeOutFunction();

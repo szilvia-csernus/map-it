@@ -1,6 +1,8 @@
 import { countryCoordinates } from '../assets/data/world-countries-centroids.js';
-// import { answersActions } from '../store/answers-slice.js';
 import TimeOut from './timeout.js';
+// To use Mapbox GL with Create React App, an exclamation point has to be added 
+// to exclude mapbox-gl from transpilation 
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 import { worldviewFilters } from './map.js';
 
@@ -32,29 +34,27 @@ export const removeTouchLayer = (map) => {
 	}
 };
 
-
-
 // timeout functions to allow time for feedback and flying animations.
 export const timeOutForCorrectFeedback = new TimeOut();
 export const timeOutForIncorrectFeedback = new TimeOut();
 export const timeOutForFlyAnimation = new TimeOut();
 
-// export let marker;
+export let marker;
 
-// /** adds the name of the country */
-// const addMarker = (map, code) => {
-// 	if (countryCoordinates[code]) {
-// 		const el = document.createElement('div');
-// 		el.className = 'marker';
-// 		// I'm using the local dataset to display country names because in case of an incorrect country was clicked
-// 		// the correct country's data can't be reached through the event.features property (as it wasn't clicked!).
-// 		el.textContent = countryCoordinates[code].countryName;
+/** adds the name of the country */
+const addMarker = (map, code) => {
+	if (countryCoordinates[code]) {
+		const el = document.createElement('div');
+		el.className = 'marker';
+		// I'm using the local dataset to display country names because in case of an incorrect country was clicked
+		// the correct country's data can't be reached through the event.features property (as it wasn't clicked!).
+		el.textContent = countryCoordinates[code].countryName;
 
-// 		marker = new mapboxgl.Marker(el)
-// 			.setLngLat(countryCoordinates[code].coordinates)
-// 			.addTo(map);
-// 	}
-// };
+		marker = new mapboxgl.Marker(el)
+			.setLngLat(countryCoordinates[code].coordinates)
+			.addTo(map);
+	}
+};
 
 /** this layer renders the country green/red according to the answer given
  * as well as increases the score if the answer is correct.
@@ -109,7 +109,7 @@ export const addFeedbackLayer = (
 			topMostLayer
 		);
 
-		// addMarker(map, clickedCountryCode);
+		addMarker(map, clickedCountryCode);
 
 		// The callback function calls the next question.
 		timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
@@ -134,7 +134,7 @@ export const addFeedbackLayer = (
 			topMostLayer
 		);
 
-		// addMarker(map, clickedCountryCode);
+		addMarker(map, clickedCountryCode);
 
 		timeOutForFlyAnimation.setTimeOutFunction(
 			() => flyToCorrectCountry(map, correctCountryCode),
@@ -170,7 +170,7 @@ const flyToCorrectCountry = (map, code) => {
 		essential: true,
 	});
 
-	// addMarker(map, code);
+	addMarker(map, code);
 };
 
 /** remove other country selection if there is any */
@@ -192,10 +192,10 @@ export const removeFeedbackLayer = (map) => {
 		map.removeLayer('corrected-country');
 	}
 
-	// // if there is already a marker on the map then remove it
-	// if (marker) {
-	// 	marker.remove();
-	// }
+	// if there is already a marker on the map then remove it
+	if (marker) {
+		marker.remove();
+	}
 };
 
 

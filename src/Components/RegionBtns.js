@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { forwardRef } from 'react';
 import { roundActions } from '../store/round-slice';
 import { answersActions } from '../store/answers-slice';
+import { mapForRotation, spinGlobe } from '../js/map';
 
 const OneRegionBtn = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const OneRegionBtn = forwardRef((props, ref) => {
 	
 
 	const clickHandler = () => {
+		mapForRotation.off('moveend', spinGlobe);
 		// set region to the chosen region
 		dispatch(roundActions.setRegion(props.region));
 		// remove 'Choose a region! title'
