@@ -31,7 +31,6 @@ export const askNextCountry = (map, dispatch) => {
 			showScore(map, dispatch);
 			
 		} else {
-            // dispatch(answersActions.clearClickedCountryCode());
 			// ask next coounty
             dispatch(roundActions.nextCountry());
 		}

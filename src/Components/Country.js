@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './Country.module.css';
-import { forwardRef } from 'react';
+import { forwardRef, memo } from 'react';
 import { oneQuestion } from '../store/question-action-creators';
 
 const Country = forwardRef((props, ref) => {
@@ -22,4 +22,4 @@ const Country = forwardRef((props, ref) => {
 	);
 });
 
-export default Country;
+export default memo(Country);

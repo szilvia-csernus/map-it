@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ChooseARegionTitle, FindTheCountryTitle, MapItTitle } from '../Components/Titles';
 import PlayBtn from '../Components/PlayBtn';
 import RegionBtns from '../Components/RegionBtns';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import { worldviewFilters, rotateGlobe } from '../js/map';
 import { HighScoresBoard } from '../Components/HighScores';
 import { initialZoom } from '../js/map';
@@ -26,7 +26,7 @@ import { gameActions } from '../store/game-slice';
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR2eW5odG0wMmFvM29zMXJ4ZnJtOWoxIn0.CSvzhr8LhmOHcUxYZ0CiTg';
 
-export default function Home () {
+const Home = () => {
 	const dispatch = useDispatch();
 	const howToPlayVisible = useSelector((state) => state.howToPlaySlice.visible);
 	const exitIconVisible = useSelector((state) => state.gameSlice.exitIcon);
@@ -140,3 +140,4 @@ export default function Home () {
 	);
 }
 
+export default memo(Home)

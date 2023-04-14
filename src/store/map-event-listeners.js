@@ -1,6 +1,7 @@
 import { answersActions } from './answers-slice';
 import store from '.';
 import { registerAnswer } from './answer-action-creators';
+import { removeFeedbackLayer } from '../js/map-layers';
 
 export const enableMapInteraction = (map) => {
 	// Set scroll and drag functions
@@ -10,7 +11,8 @@ export const enableMapInteraction = (map) => {
 };
 
 // we need this variable on this file's scope, because reading clickedCountryCode
-// from the store would not update in time for line 47.
+// from the store would not update in time for line 48. We still register 
+// clickedCountryCode in the store on line 30.
 let clickedCountryCode;
 
 export const clickEventHandler = (event, map, dispatch) => {
@@ -30,23 +32,22 @@ export const clickEventHandler = (event, map, dispatch) => {
 	}
 };
 
-
 // we define this function on the global scope so that we can reference it in exit.js
-// when it needs to be removed
+// when it needs to be removed.
 export let setDblClickSelectHandler = () => {};
 
 /** double click event listener for selecting a country  */
 const setClickSelectEventListeners = (map, dispatch) => {
 	setDblClickSelectHandler = (event) => {
 		console.log(event)
+
 		clickEventHandler(event, map, dispatch);
 		// if clicked item has no id then we just ignore it.
 		// const clickedCountryCode = store.getState().answersSlice.clickedCountryCode;
 		
 		if (clickedCountryCode) {
-			map.off('dblclick', 'country-hover', setDblClickSelectHandler);
 			// removeFeedbackLayer(map);
-			// addFeedback(map, countryCode, increaseScore, callback);
+			return map.off('dblclick', 'country-hover', setDblClickSelectHandler);
 		}
 	};
 	map.on('dblclick', 'country-hover', setDblClickSelectHandler);
@@ -57,7 +58,8 @@ export const setSelectEventListeners = (map, dispatch) => {
 	console.log(map)
 	const mobile = store.getState().gameSlice.mobile;
 	
-	// removeFeedbackLayer(map);
+	removeFeedbackLayer(map);
+
 	if (!mobile) {
 		setClickSelectEventListeners(map, dispatch);
 	} else {

@@ -5,7 +5,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 3;
   background-color: var(--alternative-bg-color);
 }
 

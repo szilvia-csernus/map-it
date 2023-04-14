@@ -5,7 +5,7 @@ import { howToPlayActions } from '../store/how-to-play-slice';
 import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.svg';
 
 // renders instructions screen & click event listener on "OK" button
-export default function HowToPlay () {
+const HowToPlay = () => {
 	const dispatch = useDispatch();
     const mobile = useSelector(state => state.gameSlice.mobile);
 	const visitedBefore =
@@ -19,7 +19,6 @@ export default function HowToPlay () {
 	
     return (
 			<Modal>
-        
 				<div className={classes.howToPlayBackground}>
 					<div className={classes.howToPlayCanvas}>
 						<p className={`${classes.firstRule} ${fastClass}`}>
@@ -39,7 +38,6 @@ export default function HowToPlay () {
 						</button>
 					</div>
 				</div>
- 
 			</Modal>
 		);
 };
@@ -59,3 +57,5 @@ export const QuestionMarkIcon = () => {
 		/>
 	);
 }
+
+export default HowToPlay
