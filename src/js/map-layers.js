@@ -1,5 +1,5 @@
-import { countryCoordinates } from '../assets/data/world-countries-centroids.js';
-import { answersActions } from '../store/answers-slice.js';
+// import { countryCoordinates } from '../assets/data/world-countries-centroids.js';
+// import { answersActions } from '../store/answers-slice.js';
 // import TimeOut from './timeout.js';
 
 import { worldviewFilters } from './map.js';

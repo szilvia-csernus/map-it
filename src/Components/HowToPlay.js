@@ -1,5 +1,4 @@
 import classes from './HowToPlay.module.css';
-// import { localStorageActions } from '../store/local-storage-slice';
 import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { howToPlayActions } from '../store/how-to-play-slice';
@@ -7,21 +6,15 @@ import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.
 
 // renders instructions screen & click event listener on "OK" button
 export default function HowToPlay () {
+	const dispatch = useDispatch();
     const mobile = useSelector(state => state.gameSlice.mobile);
-	const visitedBefore = useSelector(state => state.localStorageSlice.visitedBefore)
-    // const howToPlayState = useSelector(state => state.howToPlaySlice);
-    // const localStorageState = useSelector(state => state.localStorageSlice);
-    const dispatch = useDispatch();
-
-	// // remove the icon so that user can't click it again when instructions are already rendered on the page.
-	// $('#questionMark').remove();
-
+	const visitedBefore =
+		window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 	const message = mobile ? 'Tap ' : 'Double Click / Double Tap';
 	const fastClass = visitedBefore ? classes.fast : '';
 
     function clickHandler() {
         dispatch(howToPlayActions.remove());
-        // 	addHowToPlayIcon(isMobile, true);
     }
 	
     return (

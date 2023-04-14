@@ -14,37 +14,37 @@ import { restartGame } from "../store/game-action-creators";
 
 
 
-/** reset score, remove all buttons, icons, clear up timeout functions and questions */
+/** reset score, remove all elements, reset data and add 'map it!' title */
 export const updateElements = (dispatch) => {
+	
+    // remove all possible elements from the screen
+	dispatch(highScoresActions.removeHighScoresBoard);
+	dispatch(howToPlayActions.remove());
+	dispatch(roundActions.removeRegionBtns());
+	dispatch(roundActions.removeChooseRegionTitle());
+	dispatch(roundActions.removeFindCountry());
+	dispatch(highScoresActions.removeHighScoresTitle());
+	dispatch(answersActions.removeCheckmarkCanvas());
+	dispatch(highScoresActions.removeHighScoresBtn());
+	dispatch(gameActions.removeExitIcon());
+	dispatch(highScoresActions.removeStarIcon());
+	dispatch(gameActions.removeNewGameBtn());
 
-    dispatch(answersActions.resetScore())
-    dispatch(highScoresActions.removeHighScoresBoard);
-    dispatch(howToPlayActions.remove())
-    dispatch(roundActions.removeRegionBtns())
-    dispatch(roundActions.removeChooseRegionTitle());
-    dispatch(roundActions.removeFindCountry());
-    dispatch(highScoresActions.removeHighScoresTitle());
+	// reset all data
+	dispatch(roundActions.clearCurrentCountry());
+	dispatch(answersActions.resetScore());
+	dispatch(roundActions.clearQuestions());
 
-    dispatch(gameActions.addMapItTitle());
+	// add 'map it!' title
+	dispatch(gameActions.addMapItTitle());
 
-    dispatch(roundActions.clearCurrentCountry());
-    dispatch(answersActions.removeCheckmarkCanvas());
-    dispatch(highScoresActions.removeHighScoresBtn());
-    dispatch(gameActions.removeExitIcon());
-    dispatch(highScoresActions.removeStarIcon());
-    dispatch(roundActions.clearQuestions());
-
-    dispatch(gameActions.removeNewGameBtn());
-
-
-    // timeOutForShowScore.clearTimeOutFunction();
-    // timeOutForCorrectFeedback.clearTimeOutFunction();
-    // timeOutForIncorrectFeedback.clearTimeOutFunction();
-    // timeOutForFlyAnimation.clearTimeOutFunction();
-    timeOutForMinZoom.clearTimeOutFunction();
-    timeOutForQuestion.clearTimeOutFunction();
-    timeOutForCountry.clearTimeOutFunction();
-
+	// timeOutForShowScore.clearTimeOutFunction();
+	// timeOutForCorrectFeedback.clearTimeOutFunction();
+	// timeOutForIncorrectFeedback.clearTimeOutFunction();
+	// timeOutForFlyAnimation.clearTimeOutFunction();
+	timeOutForMinZoom.clearTimeOutFunction();
+	timeOutForQuestion.clearTimeOutFunction();
+	timeOutForCountry.clearTimeOutFunction();
 };
 
 

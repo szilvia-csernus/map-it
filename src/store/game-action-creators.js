@@ -1,27 +1,29 @@
-import { localStorageActions } from "./local-storage-slice";
 import { gameActions } from "./game-slice";
 import { howToPlayActions } from "./how-to-play-slice";
 import { roundActions } from "./round-slice";
 import { rotateGlobe } from "../js/map";
 import { updateElements } from "../Components/Exit";
 import { resetMap } from "../js/map";
+import store from ".";
+import { highScoresActions } from "./high-scores-slice";
 
-export const game = (
-	map,
-	mobile,
-	localStorageState,
-	firstTime,
-	dispatch
-) => {
+export const game = (map, dispatch ) => {
+	const mobile = store.getState().gameSlice.mobile;
+	const visitedBefore =
+		window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
+	const firstTime = store.getState().gameSlice.firstTime;
+	const playedBefore =
+		window.localStorage.getItem('playedBefore') === 'true' ? true : false;
+	
 	console.log(map, mobile);
 
 	const continueFunction = () => {
-		// if (localStorageState.playedBefore) {
-		// 	// add star icon
-		// 	dispatch(highScoresActions.addStarIcon());
-		// }
+		if (playedBefore) {
+			// add star icon
+			dispatch(highScoresActions.addStarIcon());
+		}
 		// set 'visitedBefore' in localStorage
-		dispatch(localStorageActions.setVisitedBefore());
+		window.localStorage.setItem('visitedBefore', 'true');
 		// add exit icon
 		dispatch(gameActions.addExitIcon());
 		// remove 'map it!' title
@@ -34,7 +36,7 @@ export const game = (
 		dispatch(roundActions.addRegionBtns());
 	};
 
-	if (!localStorageState.visitedBefore && firstTime) {
+	if (!visitedBefore && firstTime) {
 		// set 'firstTime' to false
 		dispatch(gameActions.setFirstTime());
 		// show 'how to play' animation

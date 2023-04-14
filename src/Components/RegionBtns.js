@@ -4,11 +4,8 @@ import { addHoverLayer } from '../store/map-hover-layer';
 import { startRound } from '../store/round-action-creators';
 import { useSelector, useDispatch } from 'react-redux';
 import { forwardRef } from 'react';
-import { useQuestions } from '../hooks/use-questions';
 import { roundActions } from '../store/round-slice';
-import { gameActions } from '../store/game-slice';
 import { answersActions } from '../store/answers-slice';
-import { getQuestions } from '../store/question-action-creators';
 
 const OneRegionBtn = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
