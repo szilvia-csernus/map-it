@@ -3,7 +3,7 @@ import { addTouchLayer} from '../js/map-layers';
 import { addHoverLayer } from '../store/map-hover-layer';
 import { startRound } from '../store/round-action-creators';
 import { useSelector, useDispatch } from 'react-redux';
-import { forwardRef, memo, useMemo } from 'react';
+import { forwardRef, memo } from 'react';
 import { roundActions } from '../store/round-slice';
 import { answersActions } from '../store/answers-slice';
 import { mapForRotation, spinGlobe } from '../js/map';
@@ -94,4 +94,6 @@ const RegionBtns = forwardRef((props, ref) => {
 	return <div className={classes.regionCanvas}>{buttons}</div>;
 });
 
+// memoizing this component prevents it re-rendering when the star- or question
+// mark icons are clicked.
 export default memo(RegionBtns);

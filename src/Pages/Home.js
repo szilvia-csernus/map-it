@@ -111,7 +111,7 @@ const Home = () => {
 		// map.current.on('error', () => {
 		// 	window.location.href = '../error.html';
 		// });
-	});
+	}, []);
 
 	// If another event cancels the touch event the default would be to jump back within the code when the player returns.
 	// This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault().

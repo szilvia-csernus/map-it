@@ -22,4 +22,6 @@ const Country = forwardRef((props, ref) => {
 	);
 });
 
+// memoizing this component prevents it re-rendering when the star- or question
+// mark icons are clicked.
 export default memo(Country);
