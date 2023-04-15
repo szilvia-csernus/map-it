@@ -1,13 +1,5 @@
 import store from ".";
-import { worldviewFilters } from '../js/map.js';
-
-const minZoom = (map) => map.getMinZoom() - 0.1;
-const maxZoom = (map) => map.getMaxZoom() + 0.5;
-
-// export let clickedCountryCode = null;
-
-// export const resetClickedCountryCode = () => (clickedCountryCode = null);
-
+import { minZoom, maxZoom, worldviewFilters } from '../js/map';
 
 let hoveredStateId = null;
 

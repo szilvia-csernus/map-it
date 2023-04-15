@@ -1,5 +1,5 @@
 import store from "."
-import { addFeedbackLayer, removeFeedbackLayer } from "../js/map-layers"
+import { addFeedbackLayer, removeFeedbackLayer } from "./map-feedback-layer"
 import { answersActions } from "./answers-slice"
 import { showScore } from "./high-scores-action-creators"
 import { endRound } from "./round-action-creators"

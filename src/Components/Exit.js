@@ -11,7 +11,7 @@ import { timeOutForCountry } from "../store/question-action-creators";
 import { timeOutForMinZoom, timeOutForQuestion } from "../store/round-action-creators";
 import { resetMap } from "../js/map";
 import { restartGame } from "../store/game-action-creators";
-import { timeOutForCorrectFeedback, timeOutForFlyAnimation, timeOutForIncorrectFeedback } from "../js/map-layers";
+import { timeOutForCorrectFeedback, timeOutForFlyAnimation, timeOutForIncorrectFeedback } from "../store/map-feedback-layer";
 
 
 

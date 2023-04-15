@@ -1,38 +1,11 @@
 import { countryCoordinates } from '../assets/data/world-countries-centroids.js';
-import TimeOut from './timeout.js';
+import TimeOut from '../js/timeout.js';
 // To use Mapbox GL with Create React App, an exclamation point has to be added 
 // to exclude mapbox-gl from transpilation 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-import { worldviewFilters } from './map.js';
-
-import { minZoom, maxZoom } from './map.js';
-
-/** this layer is used on mobile devices to provide a touch-selectable layer to
- * allow identifying the touched country.  */
-export const addTouchLayer = (map) => {
-	map.addLayer({
-		id: 'country-touch',
-		filter: ['all', ...worldviewFilters],
-		minzoom: minZoom(map),
-		maxzoom: maxZoom(map),
-		paint: {
-			// fully transparent
-			'fill-color': 'hsla(0, 0%, 100%, 0)',
-		},
-		source: 'country-boundaries',
-		'source-layer': 'country_boundaries',
-		type: 'fill',
-	});
-};
-
-/** remove hover layer and its filters if they exist */
-export const removeTouchLayer = (map) => {
-	if (map.getLayer('country-touch')) {
-		map.setFilter('country-touch', null);
-		map.removeLayer('country-touch');
-	}
-};
+import { worldviewFilters } from '../js/map.js';
+import { minZoom, maxZoom } from '../js/map.js';
 
 // timeout functions to allow time for feedback and flying animations.
 export const timeOutForCorrectFeedback = new TimeOut();

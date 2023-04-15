@@ -4,9 +4,10 @@ import {
 	mouseMoveHoverEventListenerHandler,
 	mouseLeaveHoverEventListenerHandler,
 } from '../store/map-hover-layer';
-import { setDblClickSelectHandler } from '../store/map-event-listeners';
-import { removeFeedbackLayer } from './map-layers';
-import { marker } from './map-layers';
+import { setDblClickSelectHandler, touchEndFunction, touchStartFunction } from '../store/map-event-listeners';
+import { removeFeedbackLayer} from '../store/map-feedback-layer';
+import { removeTouchLayer } from '../store/map-touch-layer';
+import { marker } from '../store/map-feedback-layer';
 
 // exclude disputed areas as well as worldviews with conflicting interests:
 // Russia regarding Crimea, Serbia regarding Kosovo,
@@ -76,7 +77,7 @@ export const disableMapInteraction = (map) => {
 /** removes all the layers, markers, event listeners, disables map interactions and flies back to initial projection & zoom level */
 export const resetMap = (map, dispatch) => {
 	removeHoverLayer(map);
-	// removeTouchLayer(map);
+	removeTouchLayer(map);
 	removeBlurLayer(map);
 	removeFeedbackLayer(map);
 
@@ -87,8 +88,8 @@ export const resetMap = (map, dispatch) => {
 	map.off('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
 	map.off('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);
 	map.off('dblclick', 'country-hover', setDblClickSelectHandler);
-	// map.off('touchstart','country-touch', touchStartFunction);
-	// map.off('touchend','country-touch', touchEndFunction);
+	map.off('touchstart','country-touch', touchStartFunction);
+	map.off('touchend','country-touch', touchEndFunction);
 
 	if (marker) {
 	    marker.remove();

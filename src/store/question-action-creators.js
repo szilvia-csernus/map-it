@@ -11,7 +11,7 @@ import {
 	// clickedCountryCode,
 	// clickEventHandler,
 	// resetClickedCountryCode,
-} from '../js/map-layers';
+} from './map-feedback-layer';
 
 // import { disableMapInteraction } from './exit.js';
 

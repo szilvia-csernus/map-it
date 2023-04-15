@@ -1,5 +1,5 @@
 import classes from './RegionBtns.module.css';
-import { addTouchLayer} from '../js/map-layers';
+import { addTouchLayer } from '../store/map-touch-layer';
 import { addHoverLayer } from '../store/map-hover-layer';
 import { startRound } from '../store/round-action-creators';
 import { useSelector, useDispatch } from 'react-redux';
@@ -41,7 +41,7 @@ const RegionBtns = forwardRef((props, ref) => {
 	const mobile = useSelector((state) => state.gameSlice.mobile);
 	const nrOfQuestions = useSelector((state) => state.roundSlice.nrOfQuestions);
 
-	if (props.mobile) {
+	if (mobile) {
 		addTouchLayer(map);
 	} else {
 		addHoverLayer(map);
@@ -83,7 +83,6 @@ const RegionBtns = forwardRef((props, ref) => {
 				className={region.className}
 				coordinates={region.coordinates}
 				zoom={region.zoom}
-				mobile={mobile}
 				ref={ref}
 			>
 				{region.name}
