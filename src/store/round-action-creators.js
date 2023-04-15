@@ -22,8 +22,16 @@ export const startRound = (
 	props,
 	dispatch
 ) => {
-	
 	const region = store.getState().roundSlice.region;
+
+	// flies to selected region
+	map.easeTo({
+		center: props.coordinates,
+		zoom: props.zoom,
+		duration: 1500,
+		bearing: 0,
+		essential: true,
+	});
 
 	// clear previous filters if any
 	if (map.getLayer('country-hover')) {
@@ -55,15 +63,6 @@ export const startRound = (
 	// add hover event listeners to the filtered region of the map
 	addDesktopHoverEventListeners(map);
 
-	// flies to selected region
-	map.easeTo({
-		center: props.coordinates,
-		zoom: props.zoom,
-		duration: 1500,
-		bearing: 0,
-		essential: true,
-	});
-
 	// set minimum zoom level after animation finished.
 	timeOutForMinZoom.setTimeOutFunction(
 		() => map.setMinZoom(map.getZoom() - 0.5),
@@ -74,7 +73,6 @@ export const startRound = (
 		dispatch(roundActions.addFindCountry());
 		getQuestions(dispatch);
 	}, 1000);
-	
 };
 
 export const endRound = (map, dispatch) => {
