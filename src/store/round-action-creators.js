@@ -24,15 +24,6 @@ export const startRound = (
 ) => {
 	const region = store.getState().roundSlice.region;
 
-	// flies to selected region
-	map.easeTo({
-		center: props.coordinates,
-		zoom: props.zoom,
-		duration: 1500,
-		bearing: 0,
-		essential: true,
-	});
-
 	// clear previous filters if any
 	if (map.getLayer('country-hover')) {
 		map.setFilter('country-hover', null);
@@ -73,6 +64,15 @@ export const startRound = (
 		dispatch(roundActions.addFindCountry());
 		getQuestions(dispatch);
 	}, 1000);
+
+	// flies to selected region
+	map.easeTo({
+		center: props.coordinates,
+		zoom: props.zoom,
+		duration: 1500,
+		bearing: 0,
+		essential: true,
+	});
 };
 
 export const endRound = (map, dispatch) => {
