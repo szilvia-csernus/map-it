@@ -1,22 +1,25 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './Pages/Home';
-import ErrorPage from './Pages/ErrorPage';
+import Load from './Pages/Load';
+import MapError from './Pages/MapError';
+import NoSupport from './Pages/NoSupport';
+import PageNotFound from './Pages/PageNotFound';
 
 // import classes from './App.module.css';
 
 export default function App() {
     const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Home />,
-    	errorElement: <ErrorPage />,
-		children: [
-			{ index: true, element: <Home /> },
-			// { path: '/no-support', element: <NoSupport /> },
-			// { path: '/not-found', element: <NotFound /> },
-		],
-	},
-]);
+			{
+				path: '/',
+				element: <Load />,
+				errorElement: <MapError />,
+				children: [
+					{ index: true, element: <Load /> },
+					{ path: '/error', element: <MapError /> },
+					{ path: '/no-support', element: <NoSupport /> },
+					{ path: '*', element: <PageNotFound /> },
+				],
+			},
+		]);
     return (
         <RouterProvider router={router} />
     )

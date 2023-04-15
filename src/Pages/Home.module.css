@@ -3,9 +3,8 @@
   top: 0;
   bottom: 0;
   width: 100vw;
-  height: 100vh;
-  opacity: 0;
-  animation: appear 1s forwards;
+  height: 100vh;  opacity: 0;
+  animation: appear 2s 1s forwards;
 }
 
 @keyframes appear {
