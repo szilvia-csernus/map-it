@@ -26,7 +26,7 @@ import { gameActions } from '../store/game-slice';
 import { useNavigate } from 'react-router-dom';
 
 mapboxgl.accessToken =
-	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR2eW5odG0wMmFvM29zMXJ4ZnJtOWoxIn0.CSvzhr8LhmOHcUxYZ0CiTg';
+	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
 
 const Home = () => {
 	const navigate = useNavigate();
