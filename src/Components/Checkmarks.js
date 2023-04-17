@@ -1,7 +1,36 @@
 import { useSelector } from 'react-redux';
 import classes from './Checkmarks.module.css';
-import { ReactComponent as CorrectIcon } from '../assets/icons/correct.svg';
-import { ReactComponent as IncorrectIcon } from '../assets/icons/incorrect.svg';
+import { ReactComponent as CorrectSVG } from '../assets/icons/correct.svg';
+import { ReactComponent as IncorrectSVG } from '../assets/icons/incorrect.svg';
+import correctSound from '../assets/audio/correct.mp3';
+import incorrectSound from '../assets/audio/incorrect.mp3';
+import useSound from 'use-sound';
+import { useEffect } from 'react';
+
+const CorrectIcon = () => {
+    const [play] = useSound(correctSound, {volume: 0.4})
+    const muted = useSelector(state => state.gameSlice.muted);
+    useEffect(() => {
+        !muted && play()
+    }, [muted, play]);
+
+    return (
+        <CorrectSVG className={classes.correct} />
+    )
+}
+
+
+const IncorrectIcon = () => {
+    const [play] = useSound(incorrectSound, {volume: 0.4})
+    const muted = useSelector(state => state.gameSlice.muted);
+    useEffect(() => {
+			!muted && play();
+		}, [muted, play]);
+    return (
+        <IncorrectSVG className={classes.incorrect} />
+    )
+}
+
 
 const Checkmarks = () => {
     const list = useSelector(state => state.answersSlice.list);
@@ -9,11 +38,11 @@ const Checkmarks = () => {
     list.forEach((el, idx) => {
         if (el) {
             marks.push(
-                <CorrectIcon key={idx} className={classes.correct} />
+                <CorrectIcon key={idx} />
             )
         } else {
             marks.push(
-                <IncorrectIcon key={idx} className={classes.incorrect} />
+                <IncorrectIcon key={idx}/>
             )
         }
     });

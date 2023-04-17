@@ -24,6 +24,7 @@ import Country from '../Components/Country';
 import { HighScoresTitle, HighScoresBtn } from '../Components/HighScores';
 import { gameActions } from '../store/game-slice';
 import { useNavigate } from 'react-router-dom';
+import Sound from '../Components/Sound';
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGdqbXNiejYwNDRiM21xcXpybXlrdjFoIn0.xxrr6_FHW-DkYh7nMFG5Ew';
@@ -158,6 +159,7 @@ const Home = () => {
 			{highScoresBtnVisible && <HighScoresBtn />}
 			{highScoresBoardVisible && <HighScoresBoard />}
 			{newGameBtnVisible && <NewGameBtn ref={map} />}
+			<Sound />
 		</>
 	);
 };
