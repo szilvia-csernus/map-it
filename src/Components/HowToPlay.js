@@ -3,9 +3,11 @@ import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { howToPlayActions } from '../store/how-to-play-slice';
 import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.svg';
+import { game } from '../store/game-action-creators';
+import { forwardRef } from 'react';
 
 // renders instructions screen & click event listener on "OK" button
-const HowToPlay = () => {
+const HowToPlay = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
     const mobile = useSelector(state => state.gameSlice.mobile);
 	const visitedBefore =
@@ -14,8 +16,11 @@ const HowToPlay = () => {
 	const fastClass = visitedBefore ? classes.fast : '';
 
     function clickHandler() {
-        dispatch(howToPlayActions.remove());
-    }
+			dispatch(howToPlayActions.remove());
+			// if the user visited for the first time, the PLAY button initiated this
+			// how-to-play board hence we would want to continue to the game straight away.
+			!visitedBefore && game(ref, dispatch);
+		}
 	
     return (
 			<Modal>
@@ -40,7 +45,7 @@ const HowToPlay = () => {
 				</div>
 			</Modal>
 		);
-};
+});
 
 export const QuestionMarkIcon = () => {
 	const dispatch = useDispatch();
