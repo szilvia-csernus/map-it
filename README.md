@@ -227,6 +227,8 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 * [React Query version ^3.39.3](https://tanstack.com/query/v3/docs/react/overview) - for fetching data
 
+* [use-sound npm package version ^4.0.1](https://www.npmjs.com/package/use-sound) - for playing audio in ReactJS
+
 * [Mapbox GL JS API](www.mapbox.com)  - used for every map-based functionality.
 
 * [Mapbox Studio](https://studio.mapbox.com/)  - to create map design.
@@ -319,6 +321,38 @@ https://www.svgrepo.com/svg/442013/sound
 * Mute icon:
 https://www.svgrepo.com/svg/441980/mute
 
+## Audio
+
+* Background music:
+Carefree Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+ Music promoted on https://www.chosic.com/free-music/all/
+ https://www.chosic.com/download-audio/25863/
+
+ Weekend by LesFM | https://lesfm.net/acoustic-background-music/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+ https://www.chosic.com/download-audio/29586/
+
+* Correct choice sound effect:
+Sound Effect by <a href="https://pixabay.com/users/liecio-3298866/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=132273">Liecio</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=132273">Pixabay</a>
+
+* 'clink' sound:
+Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6346">Pixabay</a>
+
+* Incorrect choice sound effect:
+Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6346">Pixabay</a>
+
+* High score sound:
+Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=123742">UNIVERSFIELD</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=123742">Pixabay</a>
+
+* Choose region sound:
+Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=14575">Pixabay</a>
+
+* Play Button / New Game sound:
+Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=124476">UNIVERSFIELD</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=124476">Pixabay</a>
 
 <br><br>
 

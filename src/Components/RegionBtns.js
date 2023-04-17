@@ -7,14 +7,20 @@ import { forwardRef, memo } from 'react';
 import { roundActions } from '../store/round-slice';
 import { answersActions } from '../store/answers-slice';
 import { mapForRotation, spinGlobe } from '../js/map';
+import useSound from 'use-sound';
+import chooseRegionSound from '../assets/audio/chooseRegion.mp3';
 
 const OneRegionBtn = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
 	const classNames = `${classes.regionBtn} ${props.className}`;
 	const map = ref.current;
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(chooseRegionSound, { volume: 0.3 });
 	
 
 	const clickHandler = () => {
+		!muted && play();
+
 		mapForRotation.off('moveend', spinGlobe);
 		// set region to the chosen region
 		dispatch(roundActions.setRegion(props.region));

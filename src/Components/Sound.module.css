@@ -1,0 +1,23 @@
+@keyframes appear {
+    from {
+      opacity: 0;   
+    }
+    to {
+      opacity: 1;   
+    }
+  }
+
+
+.sound {
+  position: absolute;
+  top: 1.8vh;
+  right: 1rem;
+  z-index: 1;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0 10px black);
+  cursor: pointer;
+  opacity: 0;
+  animation: appear .8s .8s ease-in forwards;
+}

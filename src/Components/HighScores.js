@@ -3,6 +3,10 @@ import classes from './HighScores.module.css';
 import { highScoresActions } from '../store/high-scores-slice';
 import Modal from './Modal';
 import { ReactComponent as StarSVG } from '../assets/icons/star.svg';
+import useSound from 'use-sound';
+import clinkSound from '../assets/audio/clink.mp3';
+import highScoreSound from '../assets/audio/highScore.mp3';
+import { useEffect } from 'react';
 
 export const HighScoresBoard = () => {
     const dispatch = useDispatch();
@@ -60,8 +64,11 @@ export const HighScoresBoard = () => {
 /** adds 'View your best scores here' button & click event listener */
 export const HighScoresBtn = () => {
     const dispatch = useDispatch();
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(clinkSound, { volume: 0.7 });
 
     const clickEventHandler = () => {
+		!muted && play();
         dispatch(highScoresActions.addHighScoresBoard());
         dispatch(highScoresActions.removeHighScoresBtn());
     }
@@ -77,14 +84,22 @@ export const HighScoresTitle = () => {
 	const text = useSelector(state => state.highScoresSlice.highScoresText);
 	const score = useSelector(state => state.answersSlice.score);
 	const nrOfQuestions = useSelector(state => state.roundSlice.nrOfQuestions);
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(highScoreSound, { volume: 0.5 });
 
+	useEffect(() => {
+		!muted && play();
+	}, [muted, play]);
 	return <h1 className={classes.finalScore}>{`${text} Score: ${score} / ${nrOfQuestions}`}</h1>;
 };
 
 export const StarIcon = () => {
 	const dispatch = useDispatch();
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(clinkSound, { volume: 0.7 });
 	
 	const clickHandler = () => {
+		!muted && play();
 		dispatch(highScoresActions.addHighScoresBoard());
 	}
 	return (
