@@ -27,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import Sound from '../Components/Sound';
 
 mapboxgl.accessToken =
-	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGdqbXNiejYwNDRiM21xcXpybXlrdjFoIn0.xxrr6_FHW-DkYh7nMFG5Ew';
+	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
 
 const Home = () => {
 	const navigate = useNavigate();
