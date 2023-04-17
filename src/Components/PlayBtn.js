@@ -2,7 +2,6 @@ import classes from './PlayBtn.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { game } from '../store/game-action-creators';
 import { forwardRef } from 'react';
-import { rotateGlobe } from '../js/map';
 import { gameActions } from '../store/game-slice';
 
 
@@ -12,7 +11,6 @@ const PlayBtn = forwardRef((props, ref) => {
     const visible = useSelector(state => state.gameSlice.playBtn);
 	
     const clickEventHandler = () => {
-        rotateGlobe(map);
         game( map, dispatch);
 	};
     const touchStartEventHandler = () => {
