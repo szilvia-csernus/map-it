@@ -4,17 +4,23 @@ import MapError from './Pages/MapError';
 import NoSupport from './Pages/NoSupport';
 import PageNotFound from './Pages/PageNotFound';
 
-export default function App() {
-	const router = createBrowserRouter([
-		{
-			path: '/',
-			element: <Load />,
-			errorElement: <PageNotFound />,
-		},
+// import classes from './App.module.css';
 
-		{ index: true, element: <Load /> },
-		{ path: '/error', element: <MapError /> },
-		{ path: '/no-support', element: <NoSupport /> },
-	]);
-	return <RouterProvider router={router} />;
+export default function App() {
+    const router = createBrowserRouter([
+			{
+				path: '/',
+				element: <Load />,
+				errorElement: <MapError />,
+				children: [
+					{ index: true, element: <Load /> },
+					{ path: '/error', element: <MapError /> },
+					{ path: '/no-support', element: <NoSupport /> },
+					{ path: '*', element: <PageNotFound /> },
+				],
+			},
+		]);
+    return (
+        <RouterProvider router={router} />
+    )
 }
