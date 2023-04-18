@@ -1,21 +1,19 @@
 import { gameActions } from "./game-slice";
 import { howToPlayActions } from "./how-to-play-slice";
 import { roundActions } from "./round-slice";
-import { rotateGlobe } from "../js/map";
+import { rotateGlobe } from "./map-action-creators";
 import { updateElements } from "../Components/Exit";
-import { resetMap } from "../js/map";
+import { resetMap } from "./map-action-creators";
 import store from ".";
 import { highScoresActions } from "./high-scores-slice";
 
-export const game = (map, dispatch ) => {
-	const mobile = store.getState().gameSlice.mobile;
+/** Updates elements on the screen (inc. region buttons) and starts game logic. */
+export const game = (dispatch) => {
 	const visitedBefore =
 		window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 	const firstTime = store.getState().gameSlice.firstTime;
 	const playedBefore =
 		window.localStorage.getItem('playedBefore') === 'true' ? true : false;
-	
-	console.log(map, mobile);
 
 	const continueFunction = () => {
 		if (playedBefore) {
@@ -49,9 +47,8 @@ export const game = (map, dispatch ) => {
 	}
 };
 
-/** updates elements, resetting map and after allowing the globe to fly back to 
- * its original place and zoom level, restarts game.
- */
+/** Updates elements, resets map and, after allowing the globe to fly back to 
+ * its original place and zoom level, starts the game.*/
 export const restartGame = (ref, dispatch) => {
 	const map = ref.current;
     updateElements(dispatch);
@@ -60,6 +57,7 @@ export const restartGame = (ref, dispatch) => {
     setTimeout( () => startGame(ref, dispatch), 500);
 };
 
+/** Starts game. Adds PLAY button and starts rotating the globe. */
 export const startGame = (ref, dispatch) => {
 	dispatch(gameActions.addPlayBtn());
 	rotateGlobe(ref)

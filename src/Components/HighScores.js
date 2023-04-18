@@ -8,6 +8,7 @@ import clinkSound from '../assets/audio/clink.mp3';
 import highScoreSound from '../assets/audio/highScore.mp3';
 import { useEffect } from 'react';
 
+/** Renders the the high scores into a modal. Includes the background and all elements. */
 export const HighScoresBoard = () => {
     const dispatch = useDispatch();
     
@@ -61,7 +62,7 @@ export const HighScoresBoard = () => {
 		);
     }
 
-/** adds 'View your best scores here' button & click event listener */
+/** Adds 'View your best scores here' button & click event listener */
 export const HighScoresBtn = () => {
     const dispatch = useDispatch();
 	const muted = useSelector((state) => state.gameSlice.muted);
@@ -79,7 +80,8 @@ export const HighScoresBtn = () => {
 		);
 };
 
-
+/** Renders the high score text to the screen at the end of the round.
+ * Also produces sound effect if enabled. */
 export const HighScoresTitle = () => {
 	const text = useSelector(state => state.highScoresSlice.highScoresText);
 	const score = useSelector(state => state.answersSlice.score);
@@ -93,6 +95,7 @@ export const HighScoresTitle = () => {
 	return <h1 className={classes.finalScore}>{`${text} Score: ${score} / ${nrOfQuestions}`}</h1>;
 };
 
+/** Renders the 'star' icon to the screen and conditionally produces a sound effect */
 export const StarIcon = () => {
 	const dispatch = useDispatch();
 	const muted = useSelector((state) => state.gameSlice.muted);

@@ -1,13 +1,13 @@
-import { removeBlurLayer } from '../store/map-blur-layer';
+import { removeBlurLayer } from './map-blur-layer';
 import {
 	removeHoverLayer,
 	mouseMoveHoverEventListenerHandler,
 	mouseLeaveHoverEventListenerHandler,
-} from '../store/map-hover-layer';
-import { setDblClickSelectHandler, touchEndFunction, touchStartFunction } from '../store/map-event-listeners';
-import { removeFeedbackLayer} from '../store/map-feedback-layer';
-import { removeTouchLayer } from '../store/map-touch-layer';
-import { marker } from '../store/map-feedback-layer';
+} from './map-hover-layer';
+import { setDblClickSelectHandler, touchEndFunction, touchStartFunction } from './map-event-listeners';
+import { removeFeedbackLayer} from './map-feedback-layer';
+import { removeTouchLayer } from './map-touch-layer';
+import { marker } from './map-feedback-layer';
 
 // exclude disputed areas as well as worldviews with conflicting interests:
 // Russia regarding Crimea, Serbia regarding Kosovo,
@@ -22,6 +22,7 @@ export const worldviewFilters = [
 	['match', ['get', 'worldview'], ['AR'], false, true],
 ];
 
+/** The zoom level depends on the screen width. */
 export const initialZoom = () => {
 	if (window.innerWidth < 600) {
 		return 1;
@@ -30,12 +31,10 @@ export const initialZoom = () => {
 	}
 };
 
+/** minZoom is adjusted depending on the map's current zoom level */
 export const minZoom = (map) => map.getMinZoom() - 0.1;
+/** maxZoom is adjusted depending on the map's current zoom level */
 export const maxZoom = (map) => map.getMaxZoom() + 0.5;
-
-
-
-// keep rotating as long as "mapForRotation.off('moveend', spinGlobe);" gets fired 
 
 // we define these 2 variables outside the function to be able to export them
 // in order to be able to stop spinning the globe later in the code.
@@ -49,7 +48,6 @@ export const rotateGlobe = (ref) => {
 	// from an example by mapbox.com:
 	// https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
 	spinGlobe = () => {
-		console.log('1 round');
 		let distancePerSecond = 360 / 100; // 100 seconds per one round
 		const center = ref.current.getCenter();
 		center.lng -= distancePerSecond;

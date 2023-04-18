@@ -4,9 +4,13 @@ import MapError from './Pages/MapError';
 import NoSupport from './Pages/NoSupport';
 import PageNotFound from './Pages/PageNotFound';
 
-// import classes from './App.module.css';
-
 export default function App() {
+		const touchCancelHandler = (e) => {
+			// If another event cancels the touch event the default would be to jump back within the code when the player returns.
+			// This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault().
+			// I have to figure out how to achieve this in React:
+			 e.preventDefault();
+		};
     const router = createBrowserRouter([
 			{
 				path: '/',
@@ -21,6 +25,6 @@ export default function App() {
 			},
 		]);
     return (
-        <RouterProvider router={router} />
+        <RouterProvider onTouchCancel={touchCancelHandler} router={router} />
     )
 }

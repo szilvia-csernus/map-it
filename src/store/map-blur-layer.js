@@ -1,7 +1,7 @@
-import { worldviewFilters } from "../js/map";
-import { minZoom, maxZoom } from "../js/map";
+import { worldviewFilters } from "./map-action-creators";
+import { minZoom, maxZoom } from "./map-action-creators";
 
-/** add a blur layer to map to allow filtering out regions */
+/** adds a blur layer to map to allow filtering out regions */
 export const addBlurLayer = (map) => {
 	map.addLayer({
 		id: `country-blur`,
@@ -17,7 +17,7 @@ export const addBlurLayer = (map) => {
 	});
 };
 
-/** remove blur layer and its filters if they exist */
+/** removes blur layer and its filters if they exist */
 export const removeBlurLayer = (map) => {
 	if (map.getLayer('country-blur')) {
 		map.setFilter('country-blur', null);

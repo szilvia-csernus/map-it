@@ -6,6 +6,7 @@ import { restartGame } from '../store/game-action-creators';
 import useSound from 'use-sound';
 import buttonSound from '../assets/audio/button.mp3';
 
+/** Renders the 'New Game' button and makes a sound effect if enabled. */
 const NewGameBtn = forwardRef((props, ref) => {
     const dispatch = useDispatch();
     const muted = useSelector((state) => state.gameSlice.muted);

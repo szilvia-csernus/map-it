@@ -3,6 +3,7 @@ import store from '.';
 import { registerAnswer } from './answer-action-creators';
 import { removeFeedbackLayer } from './map-feedback-layer';
 
+/** Enables user to interact with the map. */
 export const enableMapInteraction = (map) => {
 	// Set scroll and drag functions
 	map.dragPan.enable();
@@ -70,6 +71,7 @@ const setTouchSelectEventListeners = (map, dispatch) => {
     map.on('touchstart', 'country-touch', touchStartFunction);
 };
 
+/** Registers the clicked country to the store and initiates 'registerAnswer' logic. */
 export const clickEventHandler = (event, map, dispatch) => {
 	const currentCountryCode = store.getState().roundSlice.currentCountry[0];
 	// if clicked item has no id the click won't register a clicked country.
@@ -103,18 +105,17 @@ const setClickSelectEventListeners = (map, dispatch) => {
 
 		// if clicked item has no id then we just ignore it.
 		if (clickedCountryCode) {
-			// removeFeedbackLayer(map);
 			return map.off('dblclick', 'country-hover', setDblClickSelectHandler);
 		}
 	};
 	map.on('dblclick', 'country-hover', setDblClickSelectHandler);
 };
 
-/** remove previously clicked country's layers and add updated event listeners */
+/** adds event listeners to select country */
 export const setSelectEventListeners = (map, dispatch) => {
-	console.log(map)
 	const mobile = store.getState().gameSlice.mobile;
 	
+	// remove previously clicked country's layers first
 	removeFeedbackLayer(map);
 
 	if (!mobile) {

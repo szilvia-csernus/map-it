@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import classes from './Error.module.css';
 
+/** Renders if there is an unknown path in the url. */
 export default function PageNotFound() {
     return (
 			<>

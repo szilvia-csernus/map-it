@@ -1,4 +1,4 @@
-import { minZoom, maxZoom, worldviewFilters } from '../js/map'
+import { minZoom, maxZoom, worldviewFilters } from './map-action-creators'
 
 /** this layer is used on mobile devices to provide a touch-selectable layer to
  * allow identifying the touched country.  */

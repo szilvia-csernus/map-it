@@ -1,6 +1,7 @@
 import store from ".";
-import { minZoom, maxZoom, worldviewFilters } from '../js/map';
+import { minZoom, maxZoom, worldviewFilters } from './map-action-creators';
 
+// this variable updates after every mouse move
 let hoveredStateId = null;
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */

@@ -1,5 +1,6 @@
 import classes from './Error.module.css';
 
+/** This error page renders if the browser does not suppport Mapbox GL JS. */
 export default function NoSupport() {
 	return (
 		<>
