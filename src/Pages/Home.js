@@ -27,7 +27,7 @@ import Sound from '../Components/Sound';
 import { startGame } from '../store/game-action-creators';
 
 mapboxgl.accessToken =
-	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGdqbXNiejYwNDRiM21xcXpybXlrdjFoIn0.xxrr6_FHW-DkYh7nMFG5Ew';
+	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
 
 /** Creates the mapbox object and forwards its reference to the elements that need it.
  * Renders most of the components conditionally. */
