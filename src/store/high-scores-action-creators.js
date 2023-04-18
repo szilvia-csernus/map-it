@@ -1,23 +1,27 @@
 import store from ".";
 import { highScoresActions } from "./high-scores-slice";
 
-export const showScore = (map, dispatch) => {
+/** Enables high score rendering, updates localStorage and enables 
+ * 'View your best scores here' button */
+export const showScore = (dispatch) => {
     const score = store.getState().answersSlice.score;
     const region = store.getState().roundSlice.region;
 
-	// safely retrieve region data from localStorage
+	// safely retrieves region data from localStorage
 	const previousScoreExists = !!window.localStorage.getItem(region);
 	const highScore = Number(window.localStorage.getItem(region));
 
+	// If score is higher then any previous one, sets the text to 'HIGH' Score
 	if (highScore < score && previousScoreExists) {
 		dispatch(highScoresActions.setHighScoresText())
 	}
 
-	// update high score in localStorage
+	// updates high score in localStorage
 	if (highScore < score) {
 		window.localStorage.setItem(region, score);
 	}
 
+	// Enables rendering the high scores text
     dispatch(highScoresActions.addHighScoresTitle());
     
 

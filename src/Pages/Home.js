@@ -15,20 +15,22 @@ import {
 import PlayBtn from '../Components/PlayBtn';
 import RegionBtns from '../Components/RegionBtns';
 import { useRef, useEffect, memo } from 'react';
-import { worldviewFilters, rotateGlobe } from '../js/map';
+import { worldviewFilters } from '../store/map-action-creators';
 import { HighScoresBoard } from '../Components/HighScores';
-import { initialZoom } from '../js/map';
+import { initialZoom } from '../store/map-action-creators';
 import NewGameBtn from '../Components/NewGameBtn';
 import Checkmarks from '../Components/Checkmarks';
 import Country from '../Components/Country';
 import { HighScoresTitle, HighScoresBtn } from '../Components/HighScores';
-import { gameActions } from '../store/game-slice';
 import { useNavigate } from 'react-router-dom';
 import Sound from '../Components/Sound';
+import { startGame } from '../store/game-action-creators';
 
 mapboxgl.accessToken =
-	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
+	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGdqbXNiejYwNDRiM21xcXpybXlrdjFoIn0.xxrr6_FHW-DkYh7nMFG5Ew';
 
+/** Creates the mapbox object and forwards its reference to the elements that need it.
+ * Renders most of the components conditionally. */
 const Home = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -70,15 +72,15 @@ const Home = () => {
 	const map = useRef(null);
 
 	useEffect(() => {
+		// if Mapbox GL JS is not supported, we navigate to the NoSupport.js page.
 		if (!mapboxgl.supported()) {
 			navigate('/no-support');
 		} else {
 			if (map.current) return; // initialize map only once
 
-			/** Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
-			 * Creating a map object fires as a 'load' using the Mapbox-provided allowance of
-			 * 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
-			 */
+			// Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
+			// Creating a map object fires as a 'load' using the Mapbox-provided allowance of
+			// 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
 			map.current = new mapboxgl.Map({
 				container: mapContainer.current,
 				style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b', // ?optimize=true
@@ -114,38 +116,36 @@ const Home = () => {
 			});
 		};
 
-		console.log(map);
 		map.current.on('load', () => {
+			// after loading of the map has finished, we add tile source.
 			addTilesetSource();
-			rotateGlobe(map);
 
-			/* removed this tag as otherwise it would update itself with new http request in every second */
+			// removed this tag as otherwise it would update itself with new http request in every 
+			// second as the globe rotates.
 			if (document.getElementsByClassName('mapbox-improve-map').length > 0) {
 				document.getElementsByClassName('mapbox-improve-map')[0].remove();
 			}
-			// callback(map);
-			// document.getElementById('introContainer').remove();
-			dispatch(gameActions.addPlayBtn());
+
+			// start game only after the map has fully loaded.
+			startGame(map, dispatch);
 		});
 
+		// if there is a connection error, we navigate to the MapErrror.js page.
 		map.current.on('error', () => {
 			navigate('/error');
 		});
 
-		// giving useEffect() an empty dependency array so that it renders just once.
+		// I gave useEffect() an empty dependency array so that it renders just once
+		// when the component is first registered.
 	}, []); // eslint-disable-line
 
-	// If another event cancels the touch event the default would be to jump back within the code when the player returns.
-	// This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault().
-	// I have to figure out how to achieve this in React:
-	// document.querySelector('body').on('touchcancel', (e) => e.preventDefault());
 	return (
 		<>
 			{mapItTitleVisible && <MapItTitle />}
 
 			<div ref={mapContainer} className={classes.mapContainer} />
 
-			{playBtnVisible && <PlayBtn ref={map} />}
+			{playBtnVisible && <PlayBtn />}
 			{howToPlayVisible && <HowToPlay />}
 			{exitIconVisible && <ExitIcon ref={map} />}
 			{questionMarkIconVisible && <QuestionMarkIcon />}

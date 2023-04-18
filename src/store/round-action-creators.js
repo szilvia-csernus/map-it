@@ -2,12 +2,12 @@ import { addBlurLayer } from './map-blur-layer';
 import { addDesktopHoverEventListeners } from './map-hover-layer';
 import { gameActions } from './game-slice';
 
-import TimeOut from '../js/timeout.js';
+import TimeOut from '../utilities/timeout.js';
 import { getQuestions } from './question-action-creators';
 import store from '.';
 import { answersActions } from './answers-slice';
 import { roundActions } from './round-slice';
-import { resetMap } from '../js/map';
+import { resetMap } from './map-action-creators';
 
 
 
@@ -75,6 +75,7 @@ export const startRound = (
 	});
 };
 
+/** Reset map, remove round elements and add 'New Game' button */
 export const endRound = (map, dispatch) => {
 
 	resetMap(map);

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import classes from './Error.module.css';
 
+/** This error page gets rendered if there was an error while connecting go Mapbox,
+ * if the load number exceeded 49000 or if the Count API failed to fetch load number. */
 export default function MapError() {
 	return (
 		<>

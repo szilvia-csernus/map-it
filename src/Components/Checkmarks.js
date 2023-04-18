@@ -7,6 +7,7 @@ import incorrectSound from '../assets/audio/incorrect.mp3';
 import useSound from 'use-sound';
 import { useEffect } from 'react';
 
+/** Green "check" icon & sound */
 const CorrectIcon = () => {
     const [play] = useSound(correctSound, {volume: 0.4})
     const muted = useSelector(state => state.gameSlice.muted);
@@ -19,7 +20,7 @@ const CorrectIcon = () => {
     )
 }
 
-
+/** Red "cross" icon & sound */
 const IncorrectIcon = () => {
     const [play] = useSound(incorrectSound, {volume: 0.4})
     const muted = useSelector(state => state.gameSlice.muted);
@@ -31,7 +32,7 @@ const IncorrectIcon = () => {
     )
 }
 
-
+/** Renders all "checks" and "crosses" to the screen */
 const Checkmarks = () => {
     const list = useSelector(state => state.answersSlice.list);
     const marks = [];

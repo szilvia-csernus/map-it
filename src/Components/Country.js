@@ -4,6 +4,7 @@ import classes from './Country.module.css';
 import { forwardRef, memo } from 'react';
 import { oneQuestion } from '../store/question-action-creators';
 
+/** Renders the current country in question to the screen */
 const Country = forwardRef((props, ref) => {
 
 	const map = ref.current;

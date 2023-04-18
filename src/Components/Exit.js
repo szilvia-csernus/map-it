@@ -9,13 +9,13 @@ import { howToPlayActions } from "../store/how-to-play-slice";
 import { gameActions } from "../store/game-slice";
 import { timeOutForCountry } from "../store/question-action-creators";
 import { timeOutForMinZoom, timeOutForQuestion } from "../store/round-action-creators";
-import { resetMap } from "../js/map";
+import { resetMap } from "../store/map-action-creators";
 import { restartGame } from "../store/game-action-creators";
 import { timeOutForCorrectFeedback, timeOutForFlyAnimation, timeOutForIncorrectFeedback } from "../store/map-feedback-layer";
 
 
 
-/** reset score, remove all elements, reset data and add 'map it!' title */
+/** Resets score, removes all elements, resets data and adds 'map it!' title */
 export const updateElements = (dispatch) => {
 	
     // remove all possible elements from the screen
@@ -31,12 +31,12 @@ export const updateElements = (dispatch) => {
 	dispatch(highScoresActions.removeStarIcon());
 	dispatch(gameActions.removeNewGameBtn());
 
-	// reset all data
+	// resets all data
 	dispatch(roundActions.clearCurrentCountry());
 	dispatch(answersActions.resetScore());
 	dispatch(roundActions.clearQuestions());
 
-	// add 'map it!' title
+	// adds 'map it!' title
 	dispatch(gameActions.addMapItTitle());
 
 	timeOutForCorrectFeedback.clearTimeOutFunction();

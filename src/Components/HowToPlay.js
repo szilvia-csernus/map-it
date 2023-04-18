@@ -6,7 +6,7 @@ import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.
 import { game } from '../store/game-action-creators';
 import { forwardRef } from 'react';
 
-// renders instructions screen & click event listener on "OK" button
+/**  Renders instructions to screen & adds click event listener to "OK" button */
 const HowToPlay = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
     const mobile = useSelector(state => state.gameSlice.mobile);
@@ -17,6 +17,7 @@ const HowToPlay = forwardRef((props, ref) => {
 
     function clickHandler() {
 			dispatch(howToPlayActions.remove());
+
 			// if the user visited for the first time, the PLAY button initiated this
 			// how-to-play board hence we would want to continue to the game straight away.
 			!visitedBefore && game(ref, dispatch);
@@ -47,6 +48,7 @@ const HowToPlay = forwardRef((props, ref) => {
 		);
 });
 
+/** Renders the 'question mark' icon to the screen */
 export const QuestionMarkIcon = () => {
 	const dispatch = useDispatch();
 

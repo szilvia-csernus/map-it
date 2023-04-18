@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import Home from "./Home";
 import MapError from "./MapError";
 
+/** Sends email using the EmailJS API */
 const sendMail = (from, message) => {
     emailjs.init('sZPW9YDqBsCM52fA-');
     emailjs.send('my-emailjs-service', 'universal-template', {
@@ -20,6 +21,7 @@ const sendMail = (from, message) => {
     });
 };
 
+/** Retrieves the current load count using the Count API  */
 const fetchCount = async () => {
 	const res = await fetch(
 		'https://api.countapi.xyz/hit/szilvia-csernus/map-game'
@@ -27,11 +29,12 @@ const fetchCount = async () => {
 	return res.json();
 };
 
+/** Handles logic about loading the 'Home' screen. Renders Intro while loading,
+ * and Error page if unsuccessful. */
 export default function Load() {   
     const { status, data, isFetching } = useQuery('counts', fetchCount, {
 			refetchOnWindowFocus: false,
 		});
-        console.log(status, data, isFetching)
 
     useEffect(() => {
         if (data && 

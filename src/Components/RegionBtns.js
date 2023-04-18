@@ -6,10 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { forwardRef, memo } from 'react';
 import { roundActions } from '../store/round-slice';
 import { answersActions } from '../store/answers-slice';
-import { mapForRotation, spinGlobe } from '../js/map';
+import { mapForRotation, spinGlobe } from '../store/map-action-creators';
 import useSound from 'use-sound';
 import chooseRegionSound from '../assets/audio/chooseRegion.mp3';
 
+/** Renders one region's button, adds event listener and sound if enabled */
 const OneRegionBtn = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
 	const classNames = `${classes.regionBtn} ${props.className}`;
@@ -41,7 +42,7 @@ const OneRegionBtn = forwardRef((props, ref) => {
 	);
 });
 
-/** creates all 4 region buttons */
+/** Creates all 4 region buttons */
 const RegionBtns = forwardRef((props, ref) => {
 	const map = ref.current;
 	const mobile = useSelector((state) => state.gameSlice.mobile);

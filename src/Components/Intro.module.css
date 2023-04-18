@@ -11,7 +11,7 @@
     clip-path: circle(50% at 50% 50%);
   }
 
-  /* has oversized background */
+  /* moving an oversized background creates the moving sun effect */
   .intro {
     position: absolute;
     top: -5rem;

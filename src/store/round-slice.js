@@ -38,9 +38,6 @@ const roundSlice = createSlice({
 			state.questions = questions;
 		},
 		nextCountry(state) {
-			// if (state.questions.length === 0) {
-			//     return;
-			// }
 			state.currentCountry = state.questions.pop();
 		},
 		clearQuestions(state) {

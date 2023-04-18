@@ -1,11 +1,11 @@
 import { countryCoordinates } from '../assets/data/world-countries-centroids.js';
-import TimeOut from '../js/timeout.js';
+import TimeOut from '../utilities/timeout.js';
 // To use Mapbox GL with Create React App, an exclamation point has to be added 
 // to exclude mapbox-gl from transpilation 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-import { worldviewFilters } from '../js/map.js';
-import { minZoom, maxZoom } from '../js/map.js';
+import { worldviewFilters } from './map-action-creators.js';
+import { minZoom, maxZoom } from './map-action-creators.js';
 
 // timeout functions to allow time for feedback and flying animations.
 export const timeOutForCorrectFeedback = new TimeOut();
@@ -29,9 +29,8 @@ const addMarker = (map, code) => {
 	}
 };
 
-/** this layer renders the country green/red according to the answer given
- * as well as increases the score if the answer is correct.
- */
+/** Renders the country green/red according to the answer given
+ * as well as adds the country's name to the map. */
 export const addFeedbackLayer = (
 	map,
 	correct,

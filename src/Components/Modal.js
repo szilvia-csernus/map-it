@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 
-
+/** Renders its children in the 'overlay' div. */
 const Modal = (props) => {
 	const portalElement = document.getElementById('overlay');
 	return (
