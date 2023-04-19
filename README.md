@@ -109,8 +109,16 @@ When visiting the first time, it takes a while (depending on network speed) to l
 ## Instructions
 
 The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
+
+## Sounds
+
+Another feature is the option to play with sounds. If the user clicks the `muted speaker` icon in the top right corner, the background music will start, as well as all sound effects will be enabled. The sounds can be muted any time by clicking the `active speaker` icon.
+> Background music: <br><br> <audio controls><source src="./src/assets/audio/carefree.mp3" type="audio/mpeg"></audio>
+
 <br><br>
+
 ![instructions](readme-images/insturctions.gif)
+
 <br>
 <hr>
 <br><br>
@@ -119,6 +127,7 @@ The first time a user visits the site, an animation gives brief instructions on 
 
 The first step in the game is to choose which region the player wants to test their knowledge on. Once chosen, an animation will bring the map closer to that region. The region's countries become selectable while all countries outside the region become blurred.
 <br><br>
+
 ![choose-a-region](readme-images/choose-a-region.jpeg)
 ![find-the-country](readme-images/find-the-country.jpeg)
 <br>
@@ -129,6 +138,7 @@ The first step in the game is to choose which region the player wants to test th
 
 The player has to select the country that appears at the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
 <br><br>
+
 ![correct-country](readme-images/correct-country.gif)
 ![incorrect-country](readme-images/incorrect-country.gif)
 <br>
@@ -154,10 +164,12 @@ The scores are stored in localStorage, so if the localStorage gets cleared, the 
 ## Error pages
 
 Three types of error messages can be delivered to the user depending on the issue 
-* a `no-support page` in case the user uses an old browser that does not support Mapbox GL GS,
-* an `error page` a generic error page for every other error scenarios including the failure to connect to the COUNT API as well as the Mapbox API. 
+* a `Not Found` page in case of an invalid URL was typed in, 
+* a `No Support` page in case the user uses an old browser that does not support Mapbox GL GS,
+* an `Error page` an error page for other error scenarios including the failure to connect to the COUNT API as well as the Mapbox API. 
 <br>
 
+![404.html](readme-images/404-html.jpeg)
 ![no-support.html](readme-images/no-support-html.jpeg)
 ![error.html](readme-images/error-html.jpeg)
 
@@ -250,7 +262,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 * [Git](https://git-scm.com/) & [Github](https://github.com/)  - for version control, safe storage and deployment.
 
-* [Gitpod](https://www.gitpod.io/) alongside with [CodeInstitute's template](https://github.com/Code-Institute-Org/gitpod-full-template)  - for the development environment.
+* [VS Code](https://code.visualstudio.com/) - for the development environment.
 
 * [Google Dev Tools](https://developer.chrome.com/docs/devtools/)  - for testing and troubleshooting.
 
