@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from './Exit.module.css';
 import { ReactComponent as ExitSVG } from '../assets/icons/exit.svg';
 import { forwardRef } from "react";
@@ -12,6 +12,8 @@ import { timeOutForMinZoom, timeOutForQuestion } from "../store/round-action-cre
 import { resetMap } from "../store/map-action-creators";
 import { restartGame } from "../store/game-action-creators";
 import { timeOutForCorrectFeedback, timeOutForFlyAnimation, timeOutForIncorrectFeedback } from "../store/map-feedback-layer";
+import useSound from 'use-sound';
+import buttonSound from '../assets/audio/button.mp3';
 
 
 
@@ -51,8 +53,11 @@ export const updateElements = (dispatch) => {
 export const ExitIcon = forwardRef((props, ref) => {
     const map = ref.current
     const dispatch = useDispatch();
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     const clickHandler = () => {
+		!muted && play();
         resetMap(map);
         updateElements(dispatch);
         restartGame(ref, dispatch)

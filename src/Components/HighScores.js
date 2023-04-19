@@ -4,13 +4,15 @@ import { highScoresActions } from '../store/high-scores-slice';
 import Modal from './Modal';
 import { ReactComponent as StarSVG } from '../assets/icons/star.svg';
 import useSound from 'use-sound';
-import clinkSound from '../assets/audio/clink.mp3';
+import buttonSound from '../assets/audio/button.mp3';
 import highScoreSound from '../assets/audio/highScore.mp3';
 import { useEffect } from 'react';
 
 /** Renders the the high scores into a modal. Includes the background and all elements. */
 export const HighScoresBoard = () => {
     const dispatch = useDispatch();
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(buttonSound, { volume: 0.7 });
     
 	// only safe input gets loaded from localStorage
 	const asiaNr = Number(window.localStorage.getItem('Asia'));
@@ -23,6 +25,7 @@ export const HighScoresBoard = () => {
 	const americas = americasNr <= 10 && americasNr > 0 ? americasNr : false;
 
     const onClickHandler = () => {
+		!muted && play();
         dispatch(highScoresActions.removeHighScoresBoard())
     }
 
@@ -66,7 +69,7 @@ export const HighScoresBoard = () => {
 export const HighScoresBtn = () => {
     const dispatch = useDispatch();
 	const muted = useSelector((state) => state.gameSlice.muted);
-	const [play] = useSound(clinkSound, { volume: 0.7 });
+	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     const clickEventHandler = () => {
 		!muted && play();
@@ -99,7 +102,7 @@ export const HighScoresTitle = () => {
 export const StarIcon = () => {
 	const dispatch = useDispatch();
 	const muted = useSelector((state) => state.gameSlice.muted);
-	const [play] = useSound(clinkSound, { volume: 0.7 });
+	const [play] = useSound(buttonSound, { volume: 0.7 });
 	
 	const clickHandler = () => {
 		!muted && play();
