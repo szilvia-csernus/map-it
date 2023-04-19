@@ -117,7 +117,7 @@ Another feature is the option to play with sounds. If the user clicks the `muted
 
 <br><br>
 
-![instructions](readme-images/insturctions.gif)
+![instructions](readme-images/instructions.gif)
 
 <br>
 <hr>
@@ -169,9 +169,9 @@ Three types of error messages can be delivered to the user depending on the issu
 * an `Error page` an error page for other error scenarios including the failure to connect to the COUNT API as well as the Mapbox API. 
 <br>
 
-![404.html](readme-images/404-html.jpeg)
-![no-support.html](readme-images/no-support-html.jpeg)
-![error.html](readme-images/error-html.jpeg)
+![not-found](readme-images/not-found.jpeg)
+![no-support.html](readme-images/no-support.jpeg)
+![error.html](readme-images/error.jpeg)
 
 <br><br>
 <hr>
@@ -290,21 +290,13 @@ Detailed testing processes are documented in [TESTING.md](TESTING.md).
 
 # Credits
 
+## Data
+
 * Data for country centroids for displaying the names of the countries:
 https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson - MIT Licence, Copyright (c) 2021 Gavin Rehkemper
 
 * Country info including region info:
 https://github.com/annexare/Countries/blob/master/data/countries.json - MIT License, Copyright (c) 2014 Annexare Studio
-
-* Geolocation coordinate finder:
-http://bboxfinder.com/
-
-* Clamp() calculator for responsive font sizes:
-https://grizhlie-clamp-calculator.netlify.app/
-
-* Use of useQuery() from the react-query library:
-https://tylerclark.dev/react-query/
-https://blog.bitsrc.io/how-to-start-using-react-query-4869e3d5680d
 
 <br>
 
@@ -332,7 +324,11 @@ https://www.svgrepo.com/svg/442013/sound
 * Mute icon:
 https://www.svgrepo.com/svg/441980/mute
 
+<br>
+
 ## Audio
+
+<br>
 
 * Background music:
 Carefree Kevin MacLeod (incompetech.com)
@@ -340,8 +336,8 @@ Licensed under Creative Commons: By Attribution 4.0 License
 http://creativecommons.org/licenses/by/4.0/
  Music promoted on https://www.chosic.com/free-music/all/
  https://www.chosic.com/download-audio/25863/
-
- Weekend by LesFM | https://lesfm.net/acoustic-background-music/
+* Alternative background music (currently not active):
+Weekend by LesFM | https://lesfm.net/acoustic-background-music/
 Music promoted by https://www.chosic.com/free-music/all/
 Creative Commons CC BY 3.0
 https://creativecommons.org/licenses/by/3.0/
@@ -382,11 +378,24 @@ https://www.youtube.com/watch?v=zadj2i5wUyc - animating with gradients by Colt S
 
 * Adding drop-shadow filter to svg icons:
 https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
+
+* Geolocation coordinate finder:
+http://bboxfinder.com/
+
+* Clamp() calculator for responsive font sizes:
+https://grizhlie-clamp-calculator.netlify.app/
+
+* Use of useQuery() from the react-query library:
+https://tylerclark.dev/react-query/
+https://blog.bitsrc.io/how-to-start-using-react-query-4869e3d5680d
+
 <br><br>
 
 ##  Acknowledgements
 <br>
 I would like to thank the following contributors:
+
+* [Chris Wong](https://github.com/chriswhong) from [Mapbox](www.mapbox.com) for giving guidance on the implementation of the Mapbox GL JS API through [Mapbox's dedicated discord channel](https://discord.com/invite/uMpcC5RmJh).
 
 * [Tim Nelson](https://github.com/TravelTimN) and [Manuel Perez Romero](https://www.linkedin.com/in/manuel-perez-romero-460063176/) for giving useful feedback throughout the development and testing processes.
 
