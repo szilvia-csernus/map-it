@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { howToPlayActions } from '../store/how-to-play-slice';
 import { ReactComponent as QuestionMarkSVG } from '../assets/icons/questionMark.svg';
 import { game } from '../store/game-action-creators';
+import useSound from 'use-sound';
+import buttonSound from '../assets/audio/button.mp3';
 
 /**  Renders instructions to screen & adds click event listener to "OK" button */
 const HowToPlay = () => {
@@ -13,14 +15,17 @@ const HowToPlay = () => {
 		window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 	const message = mobile ? 'Tap ' : 'Double Click / Double Tap';
 	const fastClass = visitedBefore ? classes.fast : '';
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     function clickHandler() {
-			dispatch(howToPlayActions.remove());
+		!muted && play();
+		dispatch(howToPlayActions.remove());
 
-			// if the user visited for the first time, the PLAY button initiated this
-			// how-to-play board hence we would want to continue to the game straight away.
-			!visitedBefore && game(dispatch);
-		}
+		// if the user visited for the first time, the PLAY button initiated this
+		// how-to-play board hence we would want to continue to the game straight away.
+		!visitedBefore && game(dispatch);
+	}
 	
     return (
 			<Modal>
@@ -50,8 +55,11 @@ const HowToPlay = () => {
 /** Renders the 'question mark' icon to the screen */
 export const QuestionMarkIcon = () => {
 	const dispatch = useDispatch();
+	const muted = useSelector((state) => state.gameSlice.muted);
+	const [play] = useSound(buttonSound, { volume: 0.7 });
 
 	const clickHandler = () => {
+		!muted && play();
 		dispatch(howToPlayActions.add());
 	};
 
