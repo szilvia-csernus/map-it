@@ -9,7 +9,7 @@ const roundSlice = createSlice({
 		questions: [],
 		currentCountry: null,
 		region: null,
-		nrOfQuestions: 3,
+		nrOfQuestions: 10,
 	},
 	reducers: {
 		addChooseRegionTitle(state) {
