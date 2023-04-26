@@ -113,7 +113,6 @@ The first time a user visits the site, an animation gives brief instructions on 
 ## Sounds
 
 Another feature is the option to play with sounds. If the user clicks the `muted speaker` icon in the top right corner, the background music will start, as well as all sound effects will be enabled. The sounds can be muted any time by clicking the `active speaker` icon.
-> Background music: <br><br> <audio controls><source src="readme-images/carefree.mp3" type="audio/mpeg"></audio>
 
 <br><br>
 
