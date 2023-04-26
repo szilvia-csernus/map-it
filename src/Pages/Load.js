@@ -51,7 +51,8 @@ export default function Load() {
     return (
 			<>
 				{isFetching && <Intro />}
-				{status === 'error' && <MapError />}
+				{/* {status === 'error' && <MapError />} */}
+				{status === 'error' && <Home />}
 				{(status === 'success' && data.value < 49000) && <Home />}
 				{status === 'success' && data.value >= 49000 && <MapError />}
 			</>
