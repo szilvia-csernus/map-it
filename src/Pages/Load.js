@@ -23,8 +23,15 @@ const sendMail = (from, message) => {
 
 /** Retrieves the current load count using the Count API  */
 const fetchCount = async () => {
+	const requestOptions = {
+		method: 'GET',
+		headers: {
+		'Access-Control-Allow-Origin': '*'
+		}
+	};
 	const res = await fetch(
-		'https://api.countapi.xyz/hit/szilvia-csernus/map-game'
+		'https://api.countapi.xyz/hit/szilvia-csernus/map-game', 
+		requestOptions
 	);
 	return res.json();
 };
@@ -51,8 +58,7 @@ export default function Load() {
     return (
 			<>
 				{isFetching && <Intro />}
-				{/* {status === 'error' && <MapError />} */}
-				{status === 'error' && <Home />}
+				{status === 'error' && <MapError />}
 				{(status === 'success' && data.value < 49000) && <Home />}
 				{status === 'success' && data.value >= 49000 && <MapError />}
 			</>
