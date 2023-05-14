@@ -16,7 +16,6 @@ import useSound from 'use-sound';
 import buttonSound from '../assets/audio/button.mp3';
 
 
-
 /** Resets score, removes all elements, resets data and adds 'map it!' title */
 export const updateElements = (dispatch) => {
 	
@@ -53,15 +52,15 @@ export const updateElements = (dispatch) => {
 export const ExitIcon = forwardRef((props, ref) => {
     const map = ref.current
     const dispatch = useDispatch();
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     const clickHandler = () => {
-		!muted && play();
-        resetMap(map);
-        updateElements(dispatch);
-        restartGame(ref, dispatch)
-    }
+			!muted && play();
+			resetMap(map);
+			updateElements(dispatch);
+			restartGame(ref, dispatch);
+		}
 
     return (
         <ExitSVG className={classes.exit} aria-label="exit icon" onClick={clickHandler} />

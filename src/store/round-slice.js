@@ -10,6 +10,7 @@ const roundSlice = createSlice({
 		currentCountry: null,
 		region: null,
 		nrOfQuestions: 10,
+		muted: true,
 	},
 	reducers: {
 		addChooseRegionTitle(state) {
@@ -48,6 +49,12 @@ const roundSlice = createSlice({
 		},
 		setRegion(state, action) {
 			state.region = action.payload;
+		},
+		setMute(state) {
+			state.muted = true;
+		},
+		setUnMute(state) {
+			state.muted = false;
 		},
 	},
 });

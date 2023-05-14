@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 /** Green "check" icon & sound */
 const CorrectIcon = () => {
     const [play] = useSound(correctSound, {volume: 0.4})
-    const muted = useSelector(state => state.gameSlice.muted);
+    const muted = useSelector(state => state.roundSlice.muted);
     useEffect(() => {
         !muted && play()
     }, [muted, play]);
@@ -23,7 +23,7 @@ const CorrectIcon = () => {
 /** Red "cross" icon & sound */
 const IncorrectIcon = () => {
     const [play] = useSound(incorrectSound, {volume: 0.4})
-    const muted = useSelector(state => state.gameSlice.muted);
+    const muted = useSelector(state => state.roundSlice.muted);
     useEffect(() => {
 			!muted && play();
 		}, [muted, play]);

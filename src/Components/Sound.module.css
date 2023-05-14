@@ -9,7 +9,7 @@
   filter: drop-shadow(0 0 10px black);
   cursor: pointer;
   opacity: 0;
-  animation: appear .8s .8s ease-in forwards;
+  animation: appear .2s ease-in forwards;
 }
 
 @keyframes appear {

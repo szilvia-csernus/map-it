@@ -10,7 +10,7 @@ const gameSlice = createSlice({
 		mobile: false,
 		playBtn: false,
 		newGameBtn: false,
-		muted: true,
+		soundIcon: false,
 	},
 	reducers: {
 		setFirstTime(state) {
@@ -49,11 +49,11 @@ const gameSlice = createSlice({
 		removeNewGameBtn(state) {
 			state.newGameBtn = false;
 		},
-		setMute(state) {
-			state.muted = true;
+		addSoundIcon(state) {
+			state.soundIcon = true;
 		},
-		setUnMute(state) {
-			state.muted = false;
+		removeSoundIcon(state) {
+			state.soundIcon = false;
 		},
 	},
 });

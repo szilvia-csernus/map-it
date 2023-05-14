@@ -15,7 +15,7 @@ const OneRegionBtn = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
 	const classNames = `${classes.regionBtn} ${props.className}`;
 	const map = ref.current;
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(chooseRegionSound, { volume: 0.3 });
 	
 
@@ -31,7 +31,7 @@ const OneRegionBtn = forwardRef((props, ref) => {
 		dispatch(roundActions.removeRegionBtns());
 		// set canvas for checkmarks
 		dispatch(answersActions.addCheckmarkCanvas());
-		
+
 		startRound(map, props, dispatch);
 	}
 

@@ -9,14 +9,14 @@ import buttonSound from '../assets/audio/button.mp3';
 /** Renders the 'New Game' button and makes a sound effect if enabled. */
 const NewGameBtn = forwardRef((props, ref) => {
     const dispatch = useDispatch();
-    const muted = useSelector((state) => state.gameSlice.muted);
+    const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.4 });
 
     const clickHandler = () => {
         !muted && play();
         dispatch(gameActions.removeNewGameBtn());
-        restartGame(ref, dispatch)
-    }
+			restartGame(ref, dispatch);
+		}
 
     return (
         <button className={classes.newGameBtn} onClick={clickHandler}>New Game</button>
