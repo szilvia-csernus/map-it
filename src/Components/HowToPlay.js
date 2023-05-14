@@ -15,7 +15,7 @@ const HowToPlay = () => {
 		window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 	const message = mobile ? 'Tap ' : 'Double Click / Double Tap';
 	const fastClass = visitedBefore ? classes.fast : '';
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     function clickHandler() {
@@ -55,7 +55,7 @@ const HowToPlay = () => {
 /** Renders the 'question mark' icon to the screen */
 export const QuestionMarkIcon = () => {
 	const dispatch = useDispatch();
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
 
 	const clickHandler = () => {

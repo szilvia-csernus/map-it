@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 /** Renders the the high scores into a modal. Includes the background and all elements. */
 export const HighScoresBoard = () => {
     const dispatch = useDispatch();
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
     
 	// only safe input gets loaded from localStorage
@@ -68,7 +68,7 @@ export const HighScoresBoard = () => {
 /** Adds 'View your best scores here' button & click event listener */
 export const HighScoresBtn = () => {
     const dispatch = useDispatch();
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
 
     const clickEventHandler = () => {
@@ -89,7 +89,7 @@ export const HighScoresTitle = () => {
 	const text = useSelector(state => state.highScoresSlice.highScoresText);
 	const score = useSelector(state => state.answersSlice.score);
 	const nrOfQuestions = useSelector(state => state.roundSlice.nrOfQuestions);
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(highScoreSound, { volume: 0.5 });
 
 	useEffect(() => {
@@ -101,7 +101,7 @@ export const HighScoresTitle = () => {
 /** Renders the 'star' icon to the screen and conditionally produces a sound effect */
 export const StarIcon = () => {
 	const dispatch = useDispatch();
-	const muted = useSelector((state) => state.gameSlice.muted);
+	const muted = useSelector((state) => state.roundSlice.muted);
 	const [play] = useSound(buttonSound, { volume: 0.7 });
 	
 	const clickHandler = () => {

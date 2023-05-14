@@ -96,7 +96,6 @@ export let setDblClickSelectHandler = () => {};
 /** double click event listener for selecting a country  */
 const setClickSelectEventListeners = (map, dispatch) => {
 	setDblClickSelectHandler = (event) => {
-		console.log(event);
 
 		clickEventHandler(event, map, dispatch);
 		// This code snippet would seem better but does not work because the store is

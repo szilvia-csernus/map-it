@@ -12,7 +12,7 @@ import {
 	FindTheCountryTitle,
 	MapItTitle,
 } from '../Components/Titles';
-import PlayBtn from '../Components/PlayBtn';
+
 import RegionBtns from '../Components/RegionBtns';
 import { useRef, useEffect, memo } from 'react';
 import { worldviewFilters } from '../store/map-action-creators';
@@ -23,8 +23,9 @@ import Checkmarks from '../Components/Checkmarks';
 import Country from '../Components/Country';
 import { HighScoresTitle, HighScoresBtn } from '../Components/HighScores';
 import { useNavigate } from 'react-router-dom';
-import Sound from '../Components/Sound';
 import { startGame } from '../store/game-action-creators';
+import PlayBtn from '../Components/PlayBtn';
+import Sound from '../Components/Sound';
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
@@ -64,6 +65,7 @@ const Home = () => {
 		(state) => state.highScoresSlice.highScoresBoard
 	);
 	const newGameBtnVisible = useSelector((state) => state.gameSlice.newGameBtn);
+	const soundIconVisible = useSelector((state) => state.gameSlice.soundIcon);
 
 	const playedBefore =
 		window.localStorage.getItem('playedBefore') === 'true' ? true : false;
@@ -159,7 +161,7 @@ const Home = () => {
 			{highScoresBtnVisible && <HighScoresBtn />}
 			{highScoresBoardVisible && <HighScoresBoard />}
 			{newGameBtnVisible && <NewGameBtn ref={map} />}
-			<Sound />
+			{soundIconVisible && <Sound />}
 		</>
 	);
 };
