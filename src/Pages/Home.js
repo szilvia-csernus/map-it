@@ -124,9 +124,9 @@ const Home = () => {
 
 			// removed this tag as otherwise it would update itself with new http request in every 
 			// second as the globe rotates.
-			if (document.getElementsByClassName('mapbox-improve-map').length > 0) {
-				document.getElementsByClassName('mapbox-improve-map')[0].remove();
-			}
+			// if (document.getElementsByClassName('mapbox-improve-map').length > 0) {
+			// 	document.getElementsByClassName('mapbox-improve-map')[0].remove();
+			// }
 
 			// start game only after the map has fully loaded.
 			startGame(map, dispatch);
