@@ -2,7 +2,7 @@ import {  useQuery } from "react-query";
 import Intro from "../Components/Intro";
 
 // The firewall() function was needed to keep track of Mapbox's load count.
-// Count API (https://countapi.xyz/) is used to count load numbers.
+// I use my count-api app to to count load numbers.
 // It sends updates via email - using the EmailJS API (https://www.emailjs.com/)
 // and only allows to load the map if count does not exceed 49000.
 
@@ -25,12 +25,10 @@ const sendMail = (from, message) => {
 const fetchCount = async () => {
 	const requestOptions = {
 		method: 'GET',
-		headers: {
-		'Access-Control-Allow-Origin': '*'
-		}
 	};
 	const res = await fetch(
-		'https://api.countapi.xyz/hit/szilvia-csernus/map-game', 
+		// 'http://127.0.0.1:8000/visit/', # for locally testing with my count-api
+		'https://count-api-c7e04ddc5f87.herokuapp.com/visit/',
 		requestOptions
 	);
 	return res.json();
@@ -45,10 +43,10 @@ export default function Load() {
 
     useEffect(() => {
         if (data && 
-            (data.value === 100 ||
-			    data.value === 2000 ||
-			    data.value === 20000 ||
-			    data.value === 49000))
+            (data.count === 100 ||
+			    data.count === 2000 ||
+			    data.count === 20000 ||
+			    data.count === 49000))
         {
             sendMail('Count API', `Map game load number reached ${data.value}`); 
         }
@@ -59,8 +57,8 @@ export default function Load() {
 			<>
 				{isFetching && <Intro />}
 				{status === 'error' && <MapError />}
-				{(status === 'success' && data.value < 49000) && <Home />}
-				{status === 'success' && data.value >= 49000 && <MapError />}
+				{(status === 'success' && data.count < 49000) && <Home />}
+				{status === 'success' && data.count >= 49000 && <MapError />}
 			</>
 		);
 }
