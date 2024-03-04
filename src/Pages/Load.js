@@ -48,7 +48,7 @@ export default function Load() {
 			    data.count === 20000 ||
 			    data.count === 49000))
         {
-            sendMail('Count API', `Map game load number reached ${data.value}`); 
+            sendMail('Count API', `Map game load number reached ${data.count}`); 
         }
     }, [data])
 
