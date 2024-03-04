@@ -9,7 +9,7 @@ Interactive front-end game built for the web, written in ReactJS, utilising the 
 
 ![Landing page](readme-images/mockup.jpeg)
 
-> This project is a ReactJS version of an another [HTML-CSS-JavaScript project](https://github.com/szilvia-csernus/map-game), originally created for [Code Institute](www.codeintitute.net)'s Web Development Course for assessment purposes.
+> This project is a ReactJS version of an another [HTML-CSS-JavaScript project](https://github.com/szilvia-csernus/map-game), which I originally created for [Code Institute](www.codeintitute.net)'s Web Development Course.
 <br><br>
 Not for public use.
 <br><br>
@@ -276,6 +276,13 @@ The project was created with create-react-app. See the generic documentation [he
 
 The project is deployed from the 'build' folder and hosted on [Firebase](https://firebase.google.com/).
 
+It can be re-deployed with:
+
+`npm run build`
+
+`firebase hosting:disable`
+
+`firebase deploy`
 ---
 
 <br><br>
