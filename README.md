@@ -2,6 +2,8 @@
 
 Interactive front-end game built for the web, written in ReactJS, utilising the [Mapbox GL JS API](www.mapbox.com).
 
+[![DeepScan grade](https://deepscan.io/api/teams/23376/projects/26638/branches/850427/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=23376&pid=26638&bid=850427)
+
 ---
 
 ## [View the live project here](https://map-it-aa424.web.app/)
@@ -243,7 +245,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 * [Mapbox Studio](https://studio.mapbox.com/)  - to create map design.
 
-* [Count API](https://countapi.xyz/)  - to keep track of the number of page loads.
+* [Count API](https://github.com/szilvia-csernus/count-api)  - to keep track of the number of page loads.
 
 * [EmailJS](https://www.emailjs.com/)  - to send updates about website usage.
 
