@@ -81,7 +81,7 @@ const Home = () => {
 			if (map.current) return; // initialize map only once
 
 			// Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
-			// Creating a map object fires as a 'load' using the Mapbox-provided allowance of
+			// Creating a map object counts as one 'load', using the Mapbox-provided allowance of
 			// 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
 			map.current = new mapboxgl.Map({
 				container: mapContainer.current,
