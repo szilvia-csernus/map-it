@@ -15,6 +15,11 @@ html, body, section, article, h1, h2, p, a, button, ul {
     background: transparent;
   }
 
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
   ul {
     list-style-type: none;
   }
@@ -89,5 +94,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
 }
 
 .developer {
-  color: rgba(0,0,0,.75)
+  color: rgba(0,0,0,.75);
+  user-select: unset;
+  -webkit-user-select: unset;
 }
