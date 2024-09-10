@@ -1,12 +1,12 @@
 # map it! &#127758;
 
-Interactive front-end game built for the web, written in ReactJS, utilising the [Mapbox GL JS API](www.mapbox.com).
+Interactive front-end game, written in ReactJS, utilising the [Mapbox GL JS API](www.mapbox.com). Deployed on AWS S3 + CloudFront.
 
 [![DeepScan grade](https://deepscan.io/api/teams/23376/projects/26638/branches/850427/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=23376&pid=26638&bid=850427)
 
 ---
 
-## [View the live project here](https://map-it-aa424.web.app/)
+## [View the live project here](https://map-it.szilvia-csernus.co.uk/)
 ---
 
 ![Landing page](readme-images/mockup.jpeg)
@@ -18,32 +18,6 @@ Not for public use.
 &copy; 2023 Szilvia Csernusne Berczes. All rights reserved.
 
 ---
-<br>
-
-# User Experience (UX)
-
-## Site Owner's Goals
-
-* The game should test the players' knowledge of the world's countries.
-* The game should be visually appealing.
-* It should give simple, clear instructions.
-* The countries should be visually distinguishable.
-* It should include animations to raise interest.
-* It should be interactive.
-* Player should be given feedback about the chosen country.
-* High scores should be retained in the browser if settings allow.
-* The game should look well and run on a wide range of devices.
-
-
-## Players' Goals
-
-* The game should be fun to play.
-* Countries should be colourful and easy to recognise.
-* The rules should be easy to follow.
-* It should give feedback about the chosen country.
-* It should retain high scores.
-* The game should look well and run on a wide range of devices.
-
 <br>
 
 # Wireframes
@@ -58,10 +32,11 @@ Wireframes were created in [Balsamiq](https://balsamiq.cloud/). <br>
 
 ## Colour Scheme
 
-Seven colours were needed to colour the countries on the map. I chose these vibrant colours to convey playfulness.
+Seven colours were needed to paint the countries on the map. I chose these vibrant colours to convey playfulness, as well as to cater for users with visual imparements. See more info [here]()
 <br>
-Colours for correct and incorrect feedback were chosen for their brightness to raise the player's attention.
+Colours for correct and incorrect choices are the traditional red/green colours, their specific bright tones were chosen to stand out from their background.
 <br><br>
+
 Map colours: 
 
 ![Map colours:](readme-images/map-colours.png)
@@ -91,8 +66,31 @@ For **favicons**, I created a small logo in [Figma](https://www.figma.com/) and 
 # Data
 
 The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries and the identification of countries / territories are coming from this dataset.
+<br><br><br>
+
+# User Experience (UX)
+
+## Site Owner's Goals
+
+* The game should test the players' knowledge of the world's countries.
+* The game should be visually appealing.
+* It should give simple, clear instructions.
+* The countries should be visually distinguishable.
+* It should include animations to raise interest.
+* It should be interactive.
+* Player should be given feedback about the chosen country.
+* High scores should be retained in the browser if settings allow.
+* The game should look well and run on a wide range of devices.
 
 
+## Players' Goals
+
+* The game should be fun to play.
+* Countries should be colourful and easy to recognise.
+* The rules should be easy to follow.
+* It should give feedback about the chosen country.
+* It should retain high scores.
+* The game should look well and run on a wide range of devices.
 
 
 <br><br>
@@ -111,6 +109,7 @@ When visiting the first time, it takes a while (depending on network speed) to l
 ## Instructions
 
 The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
+<br><br>
 
 ## Sounds
 
@@ -140,8 +139,10 @@ The first step in the game is to choose which region the player wants to test th
 The player has to select the country that appears at the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
 <br><br>
 
-![correct-country](readme-images/correct-country.gif)
-![incorrect-country](readme-images/incorrect-country.gif)
+
+| Correct Choice | Incorrect Choice |
+| :---: | :---: |
+|![correct-country](readme-images/correct-country.gif)|![incorrect-country](readme-images/incorrect-country.gif) |
 <br>
 <hr>
 <br><br>
@@ -215,7 +216,17 @@ If the `PLAY` button was clicked on a touch device:
 * Images have `alt` labels and svg tags are marked with `aria` labels.
 * Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
-* [Mapbox Studio](https://studio.mapbox.com/) allows testing map designs for 8 types of visual impairments. The result of these tests can be found in [TESTING.md](./TESTING.md#accessibility).
+* [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. This is how the map looks across all tests:
+<br>
+
+![visual-impairment-1](readme-images/visual-impairment-1.jpeg)
+![visual-impairment-2](readme-images/visual-impairment-2.jpeg)
+![visual-impairment-3](readme-images/visual-impairment-3.jpeg)
+![visual-impairment-4](readme-images/visual-impairment-4.jpeg)
+![visual-impairment-5](readme-images/visual-impairment-5.jpeg)
+![visual-impairment-6](readme-images/visual-impairment-6.jpeg)
+![visual-impairment-7](readme-images/visual-impairment-7.jpeg)
+![visual-impairment-8](readme-images/visual-impairment-8.jpeg)
 
 <br><br>
 
@@ -245,7 +256,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 * [Mapbox Studio](https://studio.mapbox.com/)  - to create map design.
 
-* [Count API](https://github.com/szilvia-csernus/count-api)  - to keep track of the number of page loads.
+* [Count API](https://github.com/szilvia-csernus/count-api)  - this is my own API, used to keep track of the number of page loads.
 
 * [EmailJS](https://www.emailjs.com/)  - to send updates about website usage.
 
@@ -263,7 +274,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 * [Git](https://git-scm.com/) & [Github](https://github.com/)  - for version control, safe storage and deployment.
 
-* [VS Code](https://code.visualstudio.com/) - for the development environment.
+* [VS Code](https://code.visualstudio.com/) - for local development.
 
 * [Google Dev Tools](https://developer.chrome.com/docs/devtools/)  - for testing and troubleshooting.
 
@@ -272,26 +283,43 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript) u
 
 <br><br>
 
-# Local Development and Deployment
+# Local Development
 
-The project was created with create-react-app. See the generic documentation [here](CREATE-REACT-APP.md).
+The project was created with create-react-app. See the generic create-react-app documentation [here](CREATE-REACT-APP.md).
 
-The project is deployed from the 'build' folder and hosted on [Firebase](https://firebase.google.com/).
+<br><br>
 
-It can be re-deployed with:
+# Deployment
+
+The project is deployed on AWS. For the deployment process, I took the following steps:
+
+1. Built the React App with the `npm run build` command.
+2. Created a bucket for this project (map-it.szilvia-csernus) then uploaded the `build` folder into the newly created bucket.
+3. Enabled this S3 bucket for Static Website Hosting, noted the URL endpoint which had been created.
+4. Set up a new CloudFront Distribution in the European and American regions, I set the origin domain to the S3 bucket URL endpoint. I noted the CloudFront distribution domain name.
+5. In AWS Route 53, where I already had a hosted zone (inc. a wildcard SSL certificate for *.szilvia-csernus.co.uk), I created an A record for the sub-domain `map-it`, i.e. map-it.szilvia-csernus.co.uk and set the alias target to the CloudFront distribution domain name.
+<br><br>
+
+## Re-deployment
+To re-deploy the project, the following steps need to be taken:
+
+1. Build the React app again
+2. Upload the new build files to the S3 bucket.
+3. Invalidate the CloudFront cache to ensure the new files are served:
+4. Replace <distribution-id> with the new CloudFront distribution ID.
+<br><br>
+
+## Previous deployment
+
+Originally, this project was deployed on `Firebase`. The running project is slightly slower then the AWS one and only available in the European reagion but still available here: https://map-it-aa424.web.app/
+
+Re-deployment to Firebase:
 
 `npm run build`
 
 `firebase hosting:disable`
 
 `firebase deploy`
----
-
-<br><br>
-
-# Testing
-
-Detailed testing processes are documented in [TESTING.md](TESTING.md).
 
 ---
 <br><br>
@@ -304,7 +332,7 @@ Detailed testing processes are documented in [TESTING.md](TESTING.md).
 https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson - MIT Licence, Copyright (c) 2021 Gavin Rehkemper
 
 * Country info including region info:
-https://github.com/annexare/Countries/blob/master/data/countries.json - MIT License, Copyright (c) 2014 Annexare Studio
+https://github.com/annexare/Countries/blob/master/data/countries.json - MIT Licence, Copyright (c) 2014 Annexare Studio
 
 <br>
 
