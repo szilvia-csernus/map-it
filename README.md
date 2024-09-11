@@ -111,17 +111,19 @@ When visiting the first time, it takes a while (depending on network speed) to l
 The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
 <br><br>
 
+![instructions](readme-images/instructions.gif)
+
+<br>
+<hr>
+<br><br>
+
 ## Sounds
 
 Another feature is the option to play with sounds. If the user clicks the `muted speaker` icon in the top right corner, the background music will start, as well as all sound effects will be enabled. The sounds can be muted any time by clicking the `active speaker` icon.
 
 <br><br>
 
-![instructions](readme-images/instructions.gif)
 
-<br>
-<hr>
-<br><br>
 
 ## Choosing a region
 
@@ -291,22 +293,21 @@ The project was created with create-react-app. See the generic create-react-app 
 
 # Deployment
 
-The project is deployed on AWS. For the deployment process, I took the following steps:
+The project is deployed on AWS. For the deployment process, I took the following (main) steps:
 
-1. Built the React App with the `npm run build` command.
+1. I built the React App with the `npm run build` command.
 2. Created a bucket for this project (map-it.szilvia-csernus) then uploaded the `build` folder into the newly created bucket.
 3. Enabled this S3 bucket for Static Website Hosting, noted the URL endpoint which had been created.
 4. Set up a new CloudFront Distribution in the European and American regions, I set the origin domain to the S3 bucket URL endpoint. I noted the CloudFront distribution domain name.
-5. In AWS Route 53, where I already had a hosted zone (inc. a wildcard SSL certificate for *.szilvia-csernus.co.uk), I created an A record for the sub-domain `map-it`, i.e. map-it.szilvia-csernus.co.uk and set the alias target to the CloudFront distribution domain name.
+5. In AWS Route 53, where I already had a hosted zone (inc. a wildcard SSL certificate for *.szilvia-csernus.co.uk), I created an "A record" for the sub-domain `map-it`, i.e. `map-it.szilvia-csernus.co.uk` and set the alias target to the CloudFront distribution domain name.
 <br><br>
 
 ## Re-deployment
 To re-deploy the project, the following steps need to be taken:
 
-1. Build the React app again
-2. Upload the new build files to the S3 bucket.
-3. Invalidate the CloudFront cache to ensure the new files are served:
-4. Replace <distribution-id> with the new CloudFront distribution ID.
+1. Building the React app again
+2. Uploading the new build files to the S3 bucket.
+3. Invalidating the CloudFront cache to ensure the new files are served and AWS re-populates the caches.
 <br><br>
 
 ## Previous deployment
